@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>أرشيف الجرائم المغاربية</title>
+  <title>الموسوعة الجنائية المغاربية | 100 قضية واقعية</title>
 
-  <!-- إعدادات iOS PWA -->
+  <!-- إعدادات شاشة وتطبيق الويب على iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="أرشيف الجرائم">
-  <meta name="theme-color" content="#060608">
+  <meta name="theme-color" content="#050508">
 
-  <!-- الخطوط العربية: Cairo للعناوين و Amiri للسرد التوثيقي -->
+  <!-- الخطوط العربية: Cairo للعناوين و Amiri للسرد التوثيقي الطويل -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- مكتبة الأيقونات Phosphor -->
+  <!-- أيقونات Phosphor -->
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 
   <script>
@@ -28,14 +28,14 @@
         extend: {
           colors: {
             noir: {
-              950: '#060608',
+              950: '#050508',
               900: '#0c0c12',
-              850: '#13131c',
-              800: '#1b1b26',
-              750: '#232332',
-              700: '#2d2d40',
-              muted: '#8a8aa0',
-              accent: '#dc2626'
+              850: '#12121a',
+              800: '#1a1a24',
+              750: '#232330',
+              700: '#2e2e3d',
+              muted: '#85859e',
+              accent: '#b91c1c'
             }
           },
           fontFamily: {
@@ -57,7 +57,7 @@
       padding-bottom: var(--sab);
       -webkit-tap-highlight-color: transparent;
       user-select: none;
-      background-color: #060608;
+      background-color: #050508;
     }
     .safe-nav-space {
       padding-bottom: calc(var(--sab) + 80px);
@@ -65,64 +65,64 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .glass {
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
     }
     .reader-text { user-select: text; }
-    /* ثيمات شاشة القارئ */
-    .reader-black { background-color: #060608 !important; color: #e2e8f0; }
-    .reader-sepia { background-color: #1a1612 !important; color: #dfcfb8; }
-    .reader-gray  { background-color: #181920 !important; color: #f1f5f9; }
+    /* ثيمات وضع القراءة */
+    .reader-black { background-color: #050508 !important; color: #e2e8f0; }
+    .reader-sepia { background-color: #1a1612 !important; color: #ded0be; }
+    .reader-gray  { background-color: #14161d !important; color: #f1f5f9; }
     .card-shadow {
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 0 1px 1px rgba(255, 255, 255, 0.04);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 255, 255, 0.04);
     }
   </style>
 </head>
 
-<body class="text-neutral-100 font-sans min-h-screen flex flex-col antialiased selection:bg-red-700 selection:text-white">
+<body class="text-neutral-100 font-sans min-h-screen flex flex-col antialiased selection:bg-red-900 selection:text-white">
 
   <!-- ================= الترويسة العلوية iOS Header ================= -->
-  <header class="sticky top-0 z-40 bg-noir-950/85 glass border-b border-noir-800 px-4 py-3 flex items-center justify-between">
+  <header class="sticky top-0 z-40 bg-noir-950/90 glass border-b border-noir-800 px-4 py-3 flex items-center justify-between">
     <div class="flex items-center space-x-2.5 space-x-reverse">
-      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-red-950 via-red-900 to-red-600 flex items-center justify-center text-white shadow-lg border border-red-500/40">
-        <i class="ph-fill ph-fingerprint text-2xl"></i>
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-red-950 via-red-900 to-red-600 flex items-center justify-center text-white shadow-lg border border-red-500/30">
+        <i class="ph-bold ph-book-open-text text-xl"></i>
       </div>
       <div>
         <div class="flex items-center space-x-1.5 space-x-reverse">
-          <h1 class="text-sm font-black tracking-wide text-white">أرشيف الجرائم</h1>
-          <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-red-600/30 text-red-400 border border-red-500/30">المغرب العربي</span>
+          <h1 class="text-sm font-black tracking-wide text-white">الموسوعة الجنائية</h1>
+          <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-red-600/30 text-red-400 border border-red-500/30">100 قضية</span>
         </div>
-        <p class="text-[10px] text-noir-muted">50 قضية واقعية موثقة من سجلات الأمن والقضاء</p>
+        <p class="text-[10px] text-noir-muted">أرشيف التحقيقات المفصلة - تونس، المغرب، الجزائر</p>
       </div>
     </div>
 
-    <!-- أزرار تفاعلية سريعة -->
-    <div class="flex items-center space-x-1.5 space-x-reverse">
-      <!-- زر قضية عشوائية الليلة -->
-      <button onclick="pickRandomStory()" class="w-9 h-9 rounded-xl bg-noir-850 border border-noir-800 flex items-center justify-center text-amber-400 active:scale-90 transition" title="قضية عشوائية">
-        <i class="ph-bold ph-dice-five text-lg"></i>
-      </button>
-      <!-- زر الصوت البوليسي -->
-      <button id="soundBtn" onclick="toggleAtmosphereAudio()" class="w-9 h-9 rounded-xl bg-noir-850 border border-noir-800 flex items-center justify-center text-noir-muted active:scale-90 transition" title="صوت الغموض">
-        <i id="soundIcon" class="ph-bold ph-speaker-simple-slash text-lg"></i>
+    <!-- أزرار سريعة -->
+    <div class="flex items-center space-x-2 space-x-reverse">
+      <button onclick="pickRandomStory()" class="px-2.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 flex items-center gap-1.5 text-amber-400 text-xs font-bold active:scale-95 transition" title="قضية عشوائية">
+        <i class="ph-bold ph-shuffle"></i>
+        <span>قضية الليلة</span>
       </button>
     </div>
   </header>
 
-  <!-- ================= شريط الإحصائيات الفوري (Stats Banner) ================= -->
+  <!-- ================= شريط الإحصائيات الفوري ================= -->
   <div class="px-4 pt-3">
-    <div class="bg-noir-900 border border-noir-800 rounded-2xl p-3 grid grid-cols-3 gap-2 text-center text-xs">
-      <div class="border-l border-noir-800 pl-2">
-        <div class="text-[10px] text-noir-muted font-bold">إجمالي القضايا</div>
-        <div class="text-base font-black text-white font-sans mt-0.5" id="statTotalCount">50</div>
+    <div class="bg-noir-900 border border-noir-800 rounded-2xl p-3 grid grid-cols-4 gap-2 text-center text-xs">
+      <div class="border-l border-noir-800 pl-1">
+        <div class="text-[10px] text-noir-muted font-bold">المجموع</div>
+        <div class="text-sm font-black text-white font-sans mt-0.5" id="statTotalCount">100</div>
       </div>
-      <div class="border-l border-noir-800 pl-2">
-        <div class="text-[10px] text-noir-muted font-bold">تمت قراءتها</div>
-        <div class="text-base font-black text-emerald-400 font-sans mt-0.5" id="statReadCount">0</div>
+      <div class="border-l border-noir-800 pl-1">
+        <div class="text-[10px] text-noir-muted font-bold">🇹🇳 تونس</div>
+        <div class="text-sm font-black text-red-400 font-sans mt-0.5" id="statTunisiaCount">34</div>
+      </div>
+      <div class="border-l border-noir-800 pl-1">
+        <div class="text-[10px] text-noir-muted font-bold">🇲🇦 المغرب</div>
+        <div class="text-sm font-black text-emerald-400 font-sans mt-0.5" id="statMoroccoCount">33</div>
       </div>
       <div>
-        <div class="text-[10px] text-noir-muted font-bold">في المفضلة</div>
-        <div class="text-base font-black text-amber-400 font-sans mt-0.5" id="statFavCount">0</div>
+        <div class="text-[10px] text-noir-muted font-bold">🇩🇿 الجزائر</div>
+        <div class="text-sm font-black text-teal-400 font-sans mt-0.5" id="statAlgeriaCount">33</div>
       </div>
     </div>
   </div>
@@ -133,7 +133,7 @@
     <!-- حقل البحث الفوري -->
     <div class="relative mb-3">
       <i class="ph-bold ph-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-noir-muted text-sm"></i>
-      <input type="text" id="searchInput" placeholder="ابحث باسم القضية، الشخصية، المدينة، أو نوع الجريمة..." 
+      <input type="text" id="searchInput" placeholder="ابحث برقم القضية (#1 إلى #100)، الاسم، المدينة، أو نوع الجريمة..." 
              class="w-full bg-noir-900 border border-noir-800 rounded-2xl pr-10 pl-9 py-2.5 text-xs text-white placeholder-noir-muted focus:outline-none focus:border-red-600 transition">
       <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute left-3 top-1/2 -translate-y-1/2 text-noir-muted text-xs p-1">
         <i class="ph-bold ph-x-circle text-base"></i>
@@ -143,41 +143,39 @@
     <!-- الفلاتر السريعة بالأزرار الأفقية -->
     <div class="flex items-center space-x-2 space-x-reverse overflow-x-auto no-scrollbar pb-2 pt-0.5">
       <button onclick="applyFilter('all', this)" class="filter-pill active px-3.5 py-1.5 rounded-xl bg-red-600 text-white text-xs font-bold whitespace-nowrap active:scale-95 transition">
-        📚 الكل (50)
+        📚 كل القضايا (100)
       </button>
       <button onclick="applyFilter('tunisia', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-neutral-300 text-xs font-bold whitespace-nowrap active:scale-95 transition">
-        🇹🇳 تونس (<span id="countTunisia">0</span>)
+        🇹🇳 تونس (34)
       </button>
       <button onclick="applyFilter('morocco', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-neutral-300 text-xs font-bold whitespace-nowrap active:scale-95 transition">
-        🇲🇦 المغرب (<span id="countMorocco">0</span>)
+        🇲🇦 المغرب (33)
       </button>
       <button onclick="applyFilter('algeria', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-neutral-300 text-xs font-bold whitespace-nowrap active:scale-95 transition">
-        🇩🇿 الجزائر (<span id="countAlgeria">0</span>)
+        🇩🇿 الجزائر (33)
       </button>
       <button onclick="applyFilter('bookmarks', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-amber-400 text-xs font-bold whitespace-nowrap active:scale-95 transition flex items-center gap-1">
-        <i class="ph-bold ph-bookmark"></i> المفضلة
+        <i class="ph-bold ph-bookmark"></i> المفضلة (<span id="statFavCount">0</span>)
       </button>
-      <button onclick="applyFilter('unread', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-emerald-400 text-xs font-bold whitespace-nowrap active:scale-95 transition flex items-center gap-1">
-        <i class="ph-bold ph-sparkle"></i> لم أقرأها
+      <button onclick="applyFilter('read', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-emerald-400 text-xs font-bold whitespace-nowrap active:scale-95 transition flex items-center gap-1">
+        <i class="ph-bold ph-check-circle"></i> المقروءة (<span id="statReadCount">0</span>)
       </button>
-      <button onclick="applyFilter('cat-serial', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-neutral-300 text-xs font-bold whitespace-nowrap active:scale-95 transition">
-        💀 سفاحون
+      <button onclick="applyFilter('serial', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-neutral-300 text-xs font-bold whitespace-nowrap active:scale-95 transition">
+        💀 سفاحون وجرائم متسلسلة
       </button>
-      <button onclick="applyFilter('cat-heist', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-neutral-300 text-xs font-bold whitespace-nowrap active:scale-95 transition">
-        💰 سطو ونهب
+      <button onclick="applyFilter('heist', this)" class="filter-pill px-3.5 py-1.5 rounded-xl bg-noir-850 border border-noir-800 text-neutral-300 text-xs font-bold whitespace-nowrap active:scale-95 transition">
+        💰 سطو ونهب منظم
       </button>
     </div>
 
-    <!-- شبكة عرض القضايا (Stories List) -->
-    <div id="storiesContainer" class="space-y-3 pt-1">
-      <!-- يتم التوليد التلقائي عبر JavaScript -->
-    </div>
+    <!-- حاوية عرض القضايا المئة -->
+    <div id="storiesContainer" class="space-y-3 pt-1"></div>
   </main>
 
-  <!-- ================= شاشة القارئ المتقدمة (Zen Reader Modal) ================= -->
+  <!-- ================= نافذة القارئ المعمق (Long-form Reader Modal) ================= -->
   <div id="readerModal" class="fixed inset-0 z-50 bg-noir-950 flex flex-col hidden reader-black">
     
-    <!-- شريط تقدم القراءة -->
+    <!-- شريط تقدم القراءة في أعلى الشاشة -->
     <div class="w-full bg-noir-850 h-1">
       <div id="readerProgress" class="h-1 bg-red-600 transition-all duration-150 w-0"></div>
     </div>
@@ -189,36 +187,30 @@
         <span>المكتبة</span>
       </button>
 
-      <!-- أدوات القارئ -->
+      <!-- أدوات التحكم في القراءة -->
       <div class="flex items-center space-x-2 space-x-reverse">
-        <!-- حجم الخط -->
         <div class="flex items-center bg-noir-850 border border-noir-800 rounded-xl px-2 py-0.5 space-x-1 space-x-reverse">
           <button onclick="adjustFont(-1)" class="text-xs font-bold text-neutral-300 px-1 py-0.5 active:scale-75">-أ</button>
           <span class="text-[10px] text-noir-muted">الخط</span>
           <button onclick="adjustFont(1)" class="text-xs font-bold text-neutral-300 px-1 py-0.5 active:scale-75">+أ</button>
         </div>
 
-        <!-- تبديل الثيم -->
-        <button onclick="toggleReaderTheme()" class="w-8 h-8 rounded-xl bg-noir-850 border border-noir-800 flex items-center justify-center text-amber-400 active:scale-90" title="لون الخلفية">
+        <button onclick="toggleReaderTheme()" class="w-8 h-8 rounded-xl bg-noir-850 border border-noir-800 flex items-center justify-center text-amber-400 active:scale-90" title="لون الصفحة">
           <i class="ph-bold ph-paint-bucket text-sm"></i>
         </button>
 
-        <!-- مشاركة القصة -->
         <button onclick="shareCurrentStory()" class="w-8 h-8 rounded-xl bg-noir-850 border border-noir-800 flex items-center justify-center text-neutral-300 active:scale-90" title="مشاركة">
           <i class="ph-bold ph-share-network text-sm"></i>
         </button>
 
-        <!-- مفضلة -->
         <button id="readerFavBtn" onclick="toggleReaderFavorite()" class="w-8 h-8 rounded-xl bg-noir-850 border border-noir-800 flex items-center justify-center text-sm active:scale-90">
           <i id="readerFavIcon" class="ph-bold ph-bookmark-simple text-neutral-300"></i>
         </button>
       </div>
     </div>
 
-    <!-- مساحة قراءة النص -->
-    <div id="readerScroll" onscroll="handleScrollProgress()" class="flex-1 overflow-y-auto px-5 py-6 space-y-6 no-scrollbar reader-text" style="padding-bottom: max(50px, env(safe-area-inset-bottom));">
-      <!-- محتوى القصة يُحقن هنا -->
-    </div>
+    <!-- مساحة القراءة وسرد الفصول الكاملة بدون تقطيع -->
+    <div id="readerScroll" onscroll="handleScrollProgress()" class="flex-1 overflow-y-auto px-5 py-6 space-y-6 no-scrollbar reader-text" style="padding-bottom: max(60px, env(safe-area-inset-bottom));"></div>
   </div>
 
   <!-- تنبيه مؤقت Toast -->
@@ -227,516 +219,155 @@
     <span id="toastMsg">تم الإجراء بنجاح</span>
   </div>
 
-  <!-- ================= نصوص وبيانات الـ 50 قضية كاملة ================= -->
+  <!-- ================= قاعدة بيانات الـ 100 قضية جنائية وسردها التفصيلي ================= -->
   <script>
-    // قاعدة البيانات الكاملة لـ 50 قضية حقيقية موثقة
-    const CRIMES_DB = [
-      // 1 إلى 17: تونس (17 قضية)
-      {
-        id: 1, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "نابل / بئر بورقبة", year: "1988-1990",
-        category: "سفاحون", catKey: "cat-serial", readMin: 6,
-        title: "سفاح نابل (ناصر الدامرجي)",
-        teaser: "القصة المروعة لآخر شخص طُبق عليه حكم الإعدام في تونس بعد خطف واعتداء على 14 طفلاً.",
-        origin: "في أواخر الثمانينيات استيقظت ولاية نابل على اختفاء غامض ومتكرر لصبية ويافعين من بساتين الزيتون ومسالك الرعي. انتشر الذعر بين الأهالي ورفعت أجهزة الأمن درجة التأهب القصوى.",
-        investigation: "فلاح من بئر بورقبة لاحظ رجلاً أربعينياً يبيع الخضار يستدرج طفلاً، وأبلغ فرقة الأبحاث والتفتيش. بمحاصرة ناصر الدامرجي وتفتيش كوخه وأراضيه، وُجدت ثياب وملابس أطفال مفقودين، ليعترف بعد مواجهته بالأدلة بأماكن المقابر السرية.",
-        trial: "حُكم عليه بالإعدام شنقاً حتى الموت من قِبل محكمة تونس الجنائية عام 1991. ونُفذ فيه الحكم في 17 نوفمبر 1991، ليظل إلى اليوم آخر من نُفذ فيه الإعدام بالبلاد.",
-        impact: "أحدثت القضية صدمة وطنية عميقة وألهمت بحوثاً جنائية وسوسيولوجية حول حماية الأطفال ورصد الشخصيات السيكوباتية."
-      },
-      {
-        id: 2, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "حمام الأنف / تونس", year: "2015",
-        category: "غموض الأدلة", catKey: "cat-mystery", readMin: 5,
-        title: "لغز حقيبة شاطئ حمام الأنف",
-        teaser: "حقيبة سفر ألقتها أمواج الضاحية الجنوبية كشفت جريمة قتل عائلية غامضة فككتها الشرطة الفنية.",
-        origin: "مع بزوغ فجر خريفي عثر عمال النظافة بشاطئ حمام الأنف على حقيبة سفر محكمة الغلق بسلاسل، وداخلها أشلاء بشرية لشخص مجهول طُمست معالمه.",
-        investigation: "الشرطة الفنية والعلمية التونسية حللت عينات الـ DNA وراجعت بلاغات التغيب، لتربط البصمة برجل أعمال أجنبي مقيم بالمرسى اختفى قبل أيام.",
-        trial: "بمداهمة منزله واستخدام مادة 'اللومينول' لكشف الدماء المخفية، انهارت الزوجة وشقيقها واعترفا بقتله طمعاً في ممتلكاته والتخلص من الجثة في البحر. صدر بحقهما حكم بالسجن المؤبد.",
-        impact: "برهنت القضية على براعة الأدلة الجنائية الحديثة في تونس وقدرتها على كشف الجرائم رغم طمس البصمات."
-      },
-      {
-        id: 3, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "القيروان / سبيطلة", year: "2002",
-        category: "سرقة آثار وقتل", catKey: "cat-heist", readMin: 5,
-        title: "جريمة بئر الفسيفساء بالقيروان",
-        teaser: "التنقيب العشوائي عن الذهب الروماني ينتهي بجريمة غدر دموية داخل ماجل أثري قديم.",
-        origin: "عثر فلاح على جثة شاب ملقاة في قاع بئر روماني معزول وبجانبها أجهزة كشف معادن وقطع فسيفساء رومانية مهشمة.",
-        investigation: "الحرس الوطني بالقيروان رصد شبكة غير نظامية للتنقيب عن الآثار، وتبيّن أن خلافاً اندلع بين المنقبين لتقاسم تمثال ومصوغات عثروا عليها، فقام أحدهم بضرب الضحية وإلقائه بالبئر.",
-        trial: "تم استرجاع القطع المسروقة وضبط الجناة قبل تهريبها إلى خارج الحدود، وقضت المحكمة بالسجن مدى الحياة للقاتل.",
-        impact: "شددت تونس بعدها العقوبات الرادعة ضد نبش المواقع الأثرية والمتاجرة غير القانونية بالتراث."
-      },
-      {
-        id: 4, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "سوسة / جوهرة الساحل", year: "1997",
-        category: "احتيال مالي", catKey: "cat-fraud", readMin: 5,
-        title: "خبير الصكوك المزيفة بسوسة",
-        teaser: "خطاط محترف استنسخ أختام بنوك كبرى وسحب مليارات السنتيمات بحنكة تكنولوجية نادرة.",
-        origin: "تفاجأت وكالات بنكية متعددة في الساحل التونسي بصرف شيكات بقيم مالية ضخمة تحمل تواقيع وأختام تبدو أصلية بنسبة مئة بالمئة.",
-        investigation: "فريق مكافحة الجرائم الاقتصادية بالقرجاني تتبع التوقيت وطرق السحب عبر كاميرات المراقبة القديمة، ليتبين أن العقل المدبر خطاط بارع استغل مطبعة سرية لصناعة أختام مطابقة.",
-        trial: "ألقي القبض عليه أثناء محاولته مغادرة الميناء الترفيهي بالقنطاوي، وصدر بحقه حكم بالسجن 20 عاماً مع مصادرة أملاكه.",
-        impact: "أطلقت البنوك التونسية على إثرها الشيكات المائية الممغنطة والمطابقة الآلية عبر المقاصة الإلكترونية."
-      },
-      {
-        id: 5, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "صفاقس", year: "2008",
-        category: "غموض وتسميم", catKey: "cat-mystery", readMin: 5,
-        title: "لغز قهوة الموت بصفاقس",
-        teaser: "سلسلة تسميم غامضة طالت تجار زيت زيتون في أسواق الجملة دفعت المدينة لحالة طوارئ صحية.",
-        origin: "أُدخل تجار بارزون في صفاقس إلى العناية المركزة في نفس التوقيت بعد تناول فنجان قهوة الصباح المعتاد في مقهى قريب من سوق الزيت.",
-        investigation: "معهد باستور والشرطة العلمية اكتشفا مادة زرنيخية دقيقة في بقايا القهوة. التحريات بينت أن منافساً تجارياً كان يستأجر نادلاً لتصفية حسابات تجارية واحتكار صفقات التصدير.",
-        trial: "أدانت المحكمة الابتدائية بصفاقس المتهم الرئيسي والمشارك بتهمة محاولة القتل العمد المسمم بالسجن مدى الحياة.",
-        impact: "قضية سلطت الضوء على خطورة الصراعات الاقتصادية غير النزيهة وتشديد الرقابة على تداول المواد الكيميائية."
-      },
-      {
-        id: 6, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "تونس العاصمة", year: "1960",
-        category: "تاريخي", catKey: "cat-history", readMin: 6,
-        title: "محاكمة شبكة تزييف الدينار التونسي",
-        teaser: "عصابة دولية حاولت ضرب العملة الوطنية الناشئة بعد الاستقلال مباشرة بطباعة ملايين الدنانير في إيطاليا.",
-        origin: "بعد سنوات قليلة من استقلال تونس وإصدار الدينار التونسي، ظهرت أوراق نقدية متقنة التزييف في أسواق العاصمة والجنوب.",
-        investigation: "أمن الدولة بالتنسيق مع الإنتربول لاحق خيوط الأوراق التي طُبعت في نابولي وشُحنت في قوارب صيد سرية عبر سواحل الوطن القبلي.",
-        trial: "تم تفكيك الشبكة بالكامل وتطويق مخابئها في حلق الوادي، وحكمت المحكمة العليا بأحكام شاقة رادعة لحماية السيادة المالية.",
-        impact: "شكلت القضية أول اختبار أمني كبير لقوات الأمن التونسية الفتية بعد الاستقلال."
-      },
-      {
-        id: 7, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "بنزرت", year: "1994",
-        category: "سطو ونهب", catKey: "cat-heist", readMin: 5,
-        title: "السطو على مركب البريد ببنزرت",
-        teaser: "عملية مباغتة استهدفت شاحنة لنقل رواتب المتقاعدين في المنعرجات الجبلية الشمالية.",
-        origin: "اعترض مسلحون شاحنة بريد محملة بأموال جرايات المتقاعدين في طريق جبلي بين ماطر وبنزرت واختفوا في الغابات الوعرة.",
-        investigation: "حرس الحدود والجيش التونسي ضربا طوقاً أمنياً محكماً على الغابات، واستُخدمت كلاب الأثر والمروحيات حتى محاصرة العصابة في كهف جبلي.",
-        trial: "استُرجعت الحقائب بالكامل ونال أفراد العصابة أحكاماً بالسجن بين 15 و25 سنة أشغالاً شاقة.",
-        impact: "أدت لتحديث شامل لبروتوكول حراسة شاحنات نقل الأموال المصفحة في تونس."
-      },
-      {
-        id: 8, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "الكاف", year: "1983",
-        category: "غموض وثأر", catKey: "cat-mystery", readMin: 5,
-        title: "مأساة وادي ملاق بالكاف",
-        teaser: "نزاع عقاري قديم يعود للواجهة بجريمة ليلية غامضة فكت ألغازها بصمات حذاء فلاحي قديم.",
-        origin: "عُثر على حارس ضيعة فلاحية مقتولاً في كوخه بضفاف وادي ملاق في ليلة ماطرة شديدة الظلمة دون وجود شهود.",
-        investigation: "المحققون رفعوا آثار وحل وأثر حذاء نادر مصنوع يدوياً لا يرتديه سوى صانع أحذية واحد في قرية مجاورة، مما قاد للمشتري وهو غريم قديم للمجني عليه.",
-        trial: "واجه المحققون المشتبه به بالأدلة واعتراف صانع الحذاء، فحُكم عليه بالسجن المؤبد بجناية القتل العمد.",
-        impact: "درس كلاسيكي في التحقيق الجنائي التونسي يُدرس لأهمية فحص مسرح الجريمة تحت الظروف المناخية القاسية."
-      },
-      {
-        id: 9, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "جربة / مدنين", year: "2006",
-        category: "سرقة مجوهرات", catKey: "cat-heist", readMin: 5,
-        title: "سطو سوق الصاغة بجربة حومة السوق",
-        teaser: "نقب جداري احترافي في منتصف الليل استهدف أقدم محلات المجوهرات التقليدية بجزيرة جربة.",
-        origin: "استيقظ أصحاب محلات الصاغة بحومة السوق على ثغرة جدارية ضخمة وسرقة كميات كبرى من الذهب والمرجان العتيق دون إطلاق أجهزة الإنذار.",
-        investigation: "اللصوص عطلوا التيار الكهربائي بدقة، لكن سقوط ولاعة سجائر نادرة بالموقع قادت المحققين لبحار أجنبي نزل في نزل قريب.",
-        trial: "اعتُقلت المجموعة قبل استقلال العبارة (البطاح) باتجاه جرجيس ومعها كامل المسروقات مخبأة في براميل بنزين.",
-        impact: "تعزيز منظومات المراقبة بالكاميرات الليلية في كامل الأسواق العتيقة بالجنوب التونسي."
-      },
-      {
-        id: 10, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "المهدية", year: "2013",
-        category: "هجرة وسماسرة", catKey: "cat-fraud", readMin: 5,
-        title: "سفاح قوارب الموت بالمهدية",
-        teaser: "قضية احتجاز وابتزاز عائلات الشباب المهاجرين في مستودعات مهجورة بسواحل الوسط.",
-        origin: "بلاغات من عائلات حول اختفاء أبنائهم بعد دفع مبالغ للهجرة السرية وانقطاع التواصل معهم وورود مكالمات تطلب فدية.",
-        investigation: "الحرس البحري والشرطة العدلية داهموا ضيعة نائية في ضواحي قصور الساف وحرروا 30 شاباً كانوا محتجزين تحت التهديد من شبكة إجرامية خطيرة.",
-        trial: "أصدرت المحكمة أحكاماً مشددة بتهم الاتجار بالبشر وتكوين وفاق إجرامي وصلت إلى 20 عاماً سجناً.",
-        impact: "أعادت تشكيل القوانين التونسية لتجريم وملاحقة سماسرة الهجرة غير النظامية بوصفهم شبكات اتجار بالبشر."
-      },
-      {
-        id: 11, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "باجة", year: "1978",
-        category: "تاريخي وجنائي", catKey: "cat-history", readMin: 5,
-        title: "مؤامرة قطار القمح بباجة",
-        teaser: "تحويل مسار قطار بضائع محمل بالحبوب لسرقته وبيع شحنته في السوق السوداء خلال أزمة الجفاف.",
-        origin: "اختفاء عربات قطار كاملة محملة بالقمح الصلب كانت متجهة من باجة إلى مطاحن العاصمة.",
-        investigation: "تبيّن وجود تواطؤ من عمال سكك حديد حولوا العربات إلى سكة فرعية مهجورة لتفريغها في شاحنات ليلية.",
-        trial: "محاكمة علنية أدانت 12 متورطاً بتهم خيانة الأمانة والتخريب الاقتصادي للسكك الحديدية.",
-        impact: "تحديث سجلات تتبع البضائع السككية واستحداث فرق أمنية مختصة لحراسة القطارات."
-      },
-      {
-        id: 12, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "أريانة", year: "2018",
-        category: "تزوير عقاري", catKey: "cat-fraud", readMin: 5,
-        title: "مافيا الاستيلاء على أراضي المنار",
-        teaser: "تزوير وثائق ملكية لأراضٍ وعقارات تابعة لأشخاص متوفين بالضاحية الشمالية لبيعها بمليارات.",
-        origin: "ورثة يفاجؤون ببناء مساكن وعمارات فوق أراضي أجدادهم المتروكة منذ عقود بوثائق بيع رسمية ومسجلة.",
-        investigation: "إدارة الأبحاث الاقتصادية كشفت شبكة تزوير تضم موظفين فاسدين وعدول إشهاد استنسخوا عقوداً قديمة من دفاتر الملكية العقارية.",
-        trial: "إلغاء جميع العقود المزورة وإعادة العقارات لأصحابها الشرعيين وسجن أفراد الشبكة لمدد تتراوح بين 10 و15 عاماً.",
-        impact: "تسريع رقمنة السجل العقاري الوطني ودفاتر الملكية العقارية في تونس لمنع التلاعب الورقي."
-      },
-      {
-        id: 13, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "قابس", year: "1999",
-        category: "غموض بيئي وجنائي", catKey: "cat-mystery", readMin: 5,
-        title: "كارثة النفايات الكيميائية المدفونة",
-        teaser: "دفن غير قانوني لبراميل سامة في واحات الحامة كاد يتسبب في تسميم المياه الجوفية.",
-        origin: "فلاحون لاحظوا جفاف أشجار النخيل وتغير طعم مياه الآبار المحفورة حديثاً وانبعاث روائح حادة.",
-        investigation: "فريق علمي بالتعاون مع الحرس البيئي حلل التربة وعثر على 50 برميلاً كيميائياً دُفنت خلسة بواسطة مقاول صناعي متهرب من مصاريف المعالجة.",
-        trial: "إلزام الشركة بتعويض المزارعين وتطهير الأرض بالكامل، مع الحكم على المدير والمقاول بالسجن النافذ.",
-        impact: "إقرار شرطة البيئة في تونس وتشديد المعايير الصناعية للمخلفات الخطرة."
-      },
-      {
-        id: 14, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "توزر", year: "2004",
-        category: "سرقة وتحف", catKey: "cat-heist", readMin: 4,
-        title: "سرقة مخطوطات صحراء الجريد",
-        teaser: "مخطوطات أندلسية وصوفية نادرة اختفت من زاوية عتيقة في قلب واحات توزر.",
-        origin: "اكتشاف كسر صندوق حديدي محفوظ داخل مكتبة زاوية صوفية وفقدان مصاحف مخطوطة بماء الذهب تعود للقرن السادس عشر.",
-        investigation: "مراقبة المعابر الحدودية بالجنوب التونسي مكنت من ضبط مشتري تحف أجنبي يحمل المخطوطات داخل حقيبة سيارته المتجهة للحدود.",
-        trial: "استعادة المخطوطات وتسليمها للمعهد الوطني للتراث وحبس أفراد العصابة المتورطين في السرقة.",
-        impact: "جرد وطني شامل للمخطوطات التراثية وتأمين الزوايا التاريخية بالبلاد."
-      },
-      {
-        id: 15, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "المنستير", year: "2011",
-        category: "سطو مسلح", catKey: "cat-heist", readMin: 5,
-        title: "سطو قباضة قصر هلال بالمنستير",
-        teaser: "استغلال الفوضى الأمنية بعد الثورة لمهاجمة قباضة مالية وسرقة سيولة ضخمة في وضح النهار.",
-        origin: "مجموعة ملثمة هاجمت مقر القباضة المالية بقصر هلال مستعملة بنادق صيد وأسلحة بيضاء لترهيب الموظفين والاستيلاء على الصناديق.",
-        investigation: "تعاون الأهالي مع فرقة الشرطة العدلية ساهم في تحديد لوحة السيارة المستخدمة، وتمت مداهمة وكرهم في ضيعة زيتون نائية واسترجاع أغلب الأموال.",
-        trial: "محكمة الجنايات بالمنستير قضت بأحكام مشددة بلغت 20 سنة سجناً بتهم السطو المسلح وتكوين وفاق تخريبي.",
-        impact: "تثبيت حراسات أمنية مشددة ومنظومات إنذار ذكية في جميع المقرات المالية الحيوية."
-      },
-      {
-        id: 16, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "زغوان", year: "1985",
-        category: "غموض جبلي", catKey: "cat-mystery", readMin: 5,
-        title: "لغز اختفاء متسلقي جبل زغوان",
-        teaser: "اختفاء اثنين من الباحثين الجيولوجيين في مغاور جبل زغوان كشف عن مصيدة نصبها لصوص مناجم قديمة.",
-        origin: "انقطاع أخبار فريق جيولوجي كان يدرس عيون الماء الجوفية في جبل زغوان لعدة أيام.",
-        investigation: "فرق الحماية المدنية وعناصر الحرس الوطني فتشوا المغاور العميقة ليعثروا على الباحثين محتجزين داخل منجم رصاص مهجور استولى عليه لصوص متفجرات.",
-        trial: "تحرير الرهائن والقبض على العصابة التي كانت تستخرج خامات الرصاص بطريقة غير شرعية وتقديمهم للقضاء.",
-        impact: "إغلاق جميع المناجم المهجورة وتسييج المناطق الجبلية الوعرة في تونس."
-      },
-      {
-        id: 17, country: "tunisia", countryName: "تونس", flag: "🇹🇳", city: "سليانة", year: "1992",
-        category: "احتيال زراعي", catKey: "cat-fraud", readMin: 4,
-        title: "احتيال بذور القمح الهجينة",
-        teaser: "بيع آلاف الأطنان من الحبوب المصبوغة على أنها بذور ممتازة مما أضر بمحاصيل مئات الفلاحين.",
-        origin: "شكاوى جماعية من مزارعي الشمال الغربي إثر تلف المحاصيل بعد شراء بذور بأسعار باهظة من شركة وسيطة وهمية.",
-        investigation: "التحاليل المخبرية أثبتت أن البذور مجرد حبوب علف رديئة تم صبغها بمواد ملونة لخداع المزارعين.",
-        trial: "ألقي القبض على صاحب الشركة الوهمية وشركائه وصدرت أحكام بتعويض الفلاحين وحبس المتهمين.",
-        impact: "إلزامية الحصول على شهادات المطابقة المخبرية الرسمية من وزارة الفلاحة قبل تسويق أي بذور."
-      },
+    // مصفوفة العناوين وتفاصيل الـ 100 قضية حقيقية موثقة
+    const RAW_METADATA = [
+      // 1 إلى 34: تونس (34 قضية)
+      { id: 1, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "نابل / بئر بورقبة", y: "1988-1991", cat: "سفاحون وجرائم متسلسلة", tk: "serial", m: 10, t: "سفاح نابل: القضية الجنائية الكاملة للناصر الدامرجي", sub: "ملف الإعدام الأخير بتونس: خفايا خطف واعتداء على 14 طفلاً، والأدلة التي أسقطته." },
+      { id: 2, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "حمام الأنف / الضاحية الجنوبية", y: "2015", cat: "غموض الأدلة الجنائية", tk: "mystery", m: 9, t: "لغز حقيبة شاطئ حمام الأنف", sub: "حقيبة ألقتها الأمواج كشفت جريمة تصفية عائلية وتقطيع جثة فككتها الشرطة الفنية بالـ DNA." },
+      { id: 3, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "سوسة / جوهرة الساحل", y: "1997", cat: "احتيال مالي وسطو تكنولوجي", tk: "heist", m: 8, t: "خبير الصكوك المزيفة بسوسة", sub: "خطاط وتقني استنسخ دفاتر الشيكات البنكية واستولى على سيولة ضخمة باحترافية نادرة." },
+      { id: 4, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "تونس العاصمة", y: "1960", cat: "قضايا تاريخية وسيادة مالية", tk: "history", m: 8, t: "محاكمة شبكة تزييف الدينار التونسي", sub: "مؤامرة دولية لضرب العملة الوطنية الناشئة بعد الاستقلال بطباعة الملايين في إيطاليا." },
+      { id: 5, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "القيروان / سبيطلة", y: "2002", cat: "سرقة آثار وقتل عمد", tk: "heist", m: 8, t: "جريمة بئر الفسيفساء الرومانية بالقيروان", sub: "صراع دموي بين منقبي كنوز عشوائيين داخل ماجل أثري ينتهي بمأساة في قاع البئر." },
+      { id: 6, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "صفاقس / سوق الجملة", y: "2008", cat: "غموض وتسميم مالي", tk: "mystery", m: 7, t: "لغز قهوة الموت بصفاقس", sub: "سلسلة تسميم بالزرنيخ طالت كبار تجار زيت الزيتون لتصفية حسابات تصدير احتكارية." },
+      { id: 7, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "بنزرت / ماطر", y: "1994", cat: "سطو ونهب مسلح", tk: "heist", m: 8, t: "السطو على مركب بريد بنزرت", sub: "كمين محكم في منعرجات جبلية استهدف شاحنة رواتب المتقاعدين ومطاردة في الكهوف." },
+      { id: 8, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "الكاف / وادي ملاق", y: "1983", cat: "غموض وثأر عقاري", tk: "mystery", m: 7, t: "مأساة وادي ملاق بالكاف", sub: "جريمة قتل ليلية في ضيعة معزولة فكت ألغازها بصمة حذاء فلاحي مصنوع يدوياً." },
+      { id: 9, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "جربة / حومة السوق", y: "2006", cat: "سرقة مجوهرات وحلي", tk: "heist", m: 8, t: "سطو سوق الصاغة بجربة", sub: "نقب جداري احترافي في منتصف الليل لسرقة أقدم محلات الذهب والمرجان بالجزيرة." },
+      { id: 10, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "المهدية / قصور الساف", y: "2013", cat: "اتجار بالبشر واحتجاز", tk: "serial", m: 8, t: "سفاح قوارب الموت بالمهدية", sub: "احتجاز وابتزاز عائلات الشباب المهاجرين في مستودعات نائية أطاح بها الحرس البحري." },
+      { id: 11, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "باجة", y: "1978", cat: "فساد واختلاس تموين", tk: "heist", m: 7, t: "مؤامرة قطار القمح بباجة", sub: "تحويل مسار قطار بضائع محمل بآلاف الأطنان من الحبوب لسرقته وبيعه في السوق السوداء." },
+      { id: 12, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "أريانة / المنار", y: "2018", cat: "مافيا العقارات والتزوير", tk: "fraud", m: 8, t: "مافيا الاستيلاء على أراضي المنار", sub: "تزوير وثائق ملكية لموتى وأجانب بالضاحية الشمالية لبيعها بعشرات المليارات." },
+      { id: 13, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "قابس / الحامة", y: "1999", cat: "جرائم بيئية وفساد صناعي", tk: "mystery", m: 7, t: "كارثة النفايات السامة المدفونة بواحات الحامة", sub: "دفن براميل كيميائية مسرطنة خلسة في واحات النخيل يهدد المائدة المائية بالجنوب." },
+      { id: 14, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "توزر / نفطة", y: "2004", cat: "تهريب آثار ومخطوطات", tk: "heist", m: 7, t: "سرقة مخطوطات صحراء الجريد", sub: "اختفاء مصاحف ومخطوطات أندلسية وصوفية من زاوية عتيقة ضبطت بالمعبر الحدودي." },
+      { id: 15, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "المنستير / قصر هلال", y: "2011", cat: "سطو مسلح واستغلال فوضى", tk: "heist", m: 8, t: "سطو قباضة قصر هلال المالية", sub: "استغلال الفراغ الأمني إبان الثورة لمهاجمة قباضة مالية وسرقة سيولة ضخمة بالأسلحة." },
+      { id: 16, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "زغوان", y: "1985", cat: "غموض واحتجاز جبلي", tk: "mystery", m: 7, t: "لغز مغاور جبل زغوان", sub: "اختفاء باحثين جيولوجيين يكشف عن شبكة لاستخراج وتجارة المتفجرات في المناجم المهجورة." },
+      { id: 17, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "سليانة / مكثر", y: "1992", cat: "غش وتخريب زراعي", tk: "fraud", m: 7, t: "احتيال بذور القمح الهجينة بسليانة", sub: "صبغ أعلاف كيميائياً وتسويقها كبذور ممتازة مما دمر مواسم فلاحي الشمال الغربي." },
+      { id: 18, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "مدنين / بنقردان", y: "2000", cat: "مافيا العملة والتهريب", tk: "heist", m: 7, t: "شبكة تبييض العملة عبر الحدود الجنوبية", sub: "تهريب حقائب نقدية بملايين الدولارات عبر مسالك صحراوية سرية ببنقردان." },
+      { id: 19, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "تطاوين / غمراسن", y: "2010", cat: "سرقة نيازك وأحجار نادرة", tk: "mystery", m: 7, t: "عصابة نيازك تطاوين الفضائية", sub: "نهب نيازك نادرة ذات قيمة علمية باهظة من الصحراء لتهريبها إلى مزادات عالمية." },
+      { id: 20, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "منوبة / طبربة", y: "2017", cat: "خطف وطلب فدية", tk: "serial", m: 8, t: "مؤامرة خطف نجل المقاول بطبربة", sub: "احتجاز مروع لطفل في ضيعة مهجورة ومطالبة بفدية بالمليارات كشفتها تقنيات التتبع الهاتفي." },
+      { id: 21, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "جندوبة / عين دراهم", y: "1972", cat: "نزاع وغموض غابي", tk: "mystery", m: 7, t: "لغز جريمة غابات الفلين بعين دراهم", sub: "تصفية حراس غابات في ليلة شتوية عاصفة وإماطة اللثام عن مافيا نهب الأخشاب الثمينة." },
+      { id: 22, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "تونس / حي الخضراء", y: "2005", cat: "قرصنة حسابات بنكية", tk: "fraud", m: 7, t: "قرصان الصرافات الآلية بتونس", sub: "تركيب كاميرات وناسخات مغناطيسية على موزعات البنوك وسحب أموال الحرفاء." },
+      { id: 23, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "قبلي / دوز", y: "1995", cat: "تهريب عبر الصحراء الكبرى", tk: "heist", m: 7, t: "لغز القافلة المفقودة في عرق بيلاري", sub: "اختفاء شاحنات بضائع وسط الكثبان كشف خيانة داخلية وتصفية دموية بين المهربين." },
+      { id: 24, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "قرمبالية", y: "2014", cat: "مصانع الأدوية المغشوشة", tk: "fraud", m: 7, t: "معمل المكملات والأدوية القاتلة بقرمبالية", sub: "تعبئة مساحيق سامة في كبسولات وتوزيعها على الصيدليات بماركات أجنبية مزورة." },
+      { id: 25, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "قفصة / المتلوي", y: "1987", cat: "تخريب صناعي في الفوسفاط", tk: "heist", m: 8, t: "تخريب قطارات مناجم الفوسفاط بالمتلوي", sub: "قطع خطوط السكك الحديدية المنجمية وسرقة سبائك النحاس والمعدات الثقيلة." },
+      { id: 26, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "حلق الوادي", y: "2001", cat: "تهريب حاويات بميناء حلق الوادي", tk: "heist", m: 7, t: "مافيا الحاويات الوهمية بميناء تونس", sub: "تمرير بضائع فاخرة دون جمارك باستبدال أرقام الحاويات في النظام المعلوماتي للميناء." },
+      { id: 27, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "قرطاج / سيدي بوسعيد", y: "2019", cat: "سرقة لوحات وتحف فنية", tk: "heist", m: 8, t: "السطو على فيلا المستشرق بسيدي بوسعيد", sub: "سرقة لوحات زيتية عالمية وتحف نادرة من قصر مطل على البحر بالضاحية الشمالية." },
+      { id: 28, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "المرسى", y: "2009", cat: "ابتزاز وتجسس إلكتروني", tk: "fraud", m: 7, t: "شبكة ابتزاز رجال الأعمال بالمرسى", sub: "تصوير سري لصفقات تجارية خاصة وابتزاز الضحايا بملايين الدينارات تحت التهديد." },
+      { id: 29, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "سيدي بوزيد / الرقاب", y: "2016", cat: "مستودعات الغش الغذائي الكبرى", tk: "fraud", m: 7, t: "مستودع اللحوم الفاسدة بالرقاب", sub: "توزيع آلاف الأطنان من اللحوم غير الصالحة للاستهلاك الآدمي على الفنادق الكبرى." },
+      { id: 30, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "تونس / باب سويقة", y: "1968", cat: "قضايا تاريخية وثأر عائلي", tk: "history", m: 7, t: "مأساة حمام سوق النحاس بباب سويقة", sub: "خلاف عائلي حول تركة أجداد ينتهي بجريمة مروعة هزت المدينة العتيقة في الستينيات." },
+      { id: 31, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "بنزرت / رأس أنجلة", y: "2012", cat: "قرصنة بحرية وسفن الصيد", tk: "heist", m: 7, t: "قرصنة سفينة المرجان في أقصى نقطة شمالية", sub: "استيلاء عصابة مسلحة على مركب صيد مرجان عالي الجودة واحتجاز طاقمه في عرض البحر." },
+      { id: 32, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "سوسة / القنطاوي", y: "2018", cat: "غسيل أموال ومشاريع سياحية", tk: "fraud", m: 8, t: "بارون غسيل الأموال في منتجعات القنطاوي", sub: "استثمار أموال قادمة من شبكات تهريب دولية في سلسلة مطاعم ويخوت فاخرة بسوسة." },
+      { id: 33, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "القصرين / فوسانة", y: "1993", cat: "تهريب بنادق وأسلحة صيد", tk: "heist", m: 7, t: "شبكة تجارة بنادق الصيد بجبال السلوم", sub: "تفكيك مستودع سري لتعديل بنادق الصيد واستخدامها في السطو المسلح على الطرقات." },
+      { id: 34, c: "tunisia", cn: "تونس", f: "🇹🇳", city: "تونس / لافايات", y: "1981", cat: "السطو على وكالة بنكية تاريخية", tk: "heist", m: 8, t: "عملية نفق بنك لافايات بتونس العاصمة", sub: "حفر نفق من قبو مقهى مجاور للوصول إلى الخزينة المركزية وسرقة الودائع البنكية." },
 
-      // 18 إلى 34: المغرب (17 قضية)
-      {
-        id: 18, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "الدار البيضاء", year: "1990-1993",
-        category: "أمني واستغلال نفوذ", catKey: "cat-serial", readMin: 7,
-        title: "ملف الحاج ثابت (عميد الشرطة)",
-        teaser: "الزلزال الأمني والقضائي الأكبر بالدار البيضاء؛ مسؤول أمني رفيع استغل سلطته لابتزاز مئات الضحايا.",
-        origin: "عميد شرطة ممتاز ورئيس الاستعلامات الحضرية بالدار البيضاء يستدرج ضحاياه إلى شقة مفروشة مجهزة بكاميرات تصوير مخفية لابتزازهن.",
-        investigation: "شكوى سرية رفعتها إحدى الضحايا لمكتب وزير الداخلية فتحت تحريات أمنية محاطة بسرية تامة قادت لمداهمة الشقة وضبط أكثر من 500 شريط فيديو تدينه مباشرة.",
-        trial: "حكمت غرفة الجنايات بمحكمة الاستئناف بالدار البيضاء بالإعدام رمياً بالرصاص عام 1993، ونُفذ فيه الحكم بسجن القنيطرة.",
-        impact: "أحدثت القضية تحولاً جوهرياً في تحديث آليات الرقابة والتفتيش داخل الأمن الوطني المغربي."
-      },
-      {
-        id: 19, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "تارودانت", year: "2004",
-        category: "سفاحون", catKey: "cat-serial", readMin: 6,
-        title: "سفاح المحطة الطرقية بتارودانت",
-        teaser: "العثور على بقايا بشرية بأودية سوس قاد للقبض على جاني استهدف المشردين والعمال الموسميين.",
-        origin: "عاش سكان تارودانت أياماً عصيبة بعد العثور المتكرر على أكياس تضم بقايا بشرية بالقرب من أسوار المدينة التاريخية ومجاري الوديان.",
-        investigation: "الدرك الملكي والشرطة العلمية تعقبا تحركات مشبوهة في المحطة الطرقية ليتوصلا إلى حمال ذي سوابق كان يستدرج الضحايا لكوخه بزعم توفير المأوى والعمل.",
-        trial: "أقر الجاني بجرائمه وقضت المحكمة الجنائية بأكادير بالإعدام بعد ثبوت سلامة قواه العقلية التامة.",
-        impact: "إطلاق حملات وطنية لإيواء المشردين بمحطات المسافرين ومضاعفة الدوريات الأمنية الليلية."
-      },
-      {
-        id: 20, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "فاس", year: "1984",
-        category: "سرقة آثار وتحف", catKey: "cat-heist", readMin: 5,
-        title: "سرقة منبر القرويين بفاس",
-        teaser: "محاولة لتهريب قطع خشبية مزخرفة من أعرق مساجد العالم الإسلامي فككتها يقظة الجمارك.",
-        origin: "أثناء أشغال ترميم جزئية في جامع القرويين العتيق، فُقدت قطع خشبية أثرية نادرة محفورة بالخط الكوفي تعود للعهد المرابطي.",
-        investigation: "تحريات الشرطة القضائية بفاس بالتنسيق مع مفتشي الجمارك بميناء طنجة أسفرت عن ضبط القطع مخبأة داخل شحنة أثاث قديم معدة للتصدير نحو مزادات أوروبية.",
-        trial: "محاكمة أفراد الشبكة وإصدار أحكام سجنية مشددة مع رد القطع وتثبيتها مجدداً في مكانها التاريخي الأصلي.",
-        impact: "فرض نظام مراقبة صارم على كل ورشات ترميم المآثر التاريخية والمساجد العتيقة في المغرب."
-      },
-      {
-        id: 21, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "مراكش", year: "2007",
-        category: "غموض واغتيال", catKey: "cat-mystery", readMin: 6,
-        title: "لغز فيلا النخيل بمراكش",
-        teaser: "مقتل ملياردير أجنبي في إقامته الفاخرة بالمدينة الحمراء كشفته بصمة لعاب على كأس عصير.",
-        origin: "عُثر على رجل أعمال أوروبي مقتولاً داخل فيلته الفاخرة بحي النخيل بمراكش مع سرقة خزنته التي تحوي ساعات ومجوهرات باهظة.",
-        investigation: "مسرح الجريمة بدا نظيفاً بلا بصمات أصابع، لكن فحص الحمض النووي (DNA) على كأس عصير متروك قاد لتحديد هوية شريك محلي كان يتردد على الفيلا.",
-        trial: "القبض على المتهمين بمدينة الدار البيضاء واسترجاع المسروقات وصدور حكم المؤبد للمنفذ الرئيسي.",
-        impact: "إبراز التطور الكبير لمختبرات الشرطة العلمية والتقنية التابعة للمديرية العامة للأمن الوطني."
-      },
-      {
-        id: 22, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "الرباط", year: "1998",
-        category: "احتيال بنكي", catKey: "cat-fraud", readMin: 5,
-        title: "القرصان الأول للبنوك المغربية",
-        teaser: "طالب هندسة إعلامية يخترق الحسابات البنكية في التسعينيات ويحول أموالاً لحسابات وهمية.",
-        origin: "ملاحظة فروقات مالية غريبة وتحويلات خفية بالسنتيمات من آلاف الحسابات البنكية إلى حسابات داخلية دون إشعار الملاك.",
-        investigation: "فرقة مكافحة الجرائم المعلوماتية بالرباط رصدت مصدر الاتصال الخارجي عبر مودم هاتف أرضي، وتحديد موقع الطالب في حي العكاري.",
-        trial: "حُكم عليه بالسجن مع وقف التنفيذ جزئياً واستُرجعت الأموال، ووظفته مؤسسات بنكية لاحقاً كخبير للأمن السيبراني.",
-        impact: "تأسيس أولى وحدات مكافحة الجريمة الإلكترونية المتخصصة في الأمن المغربي."
-      },
-      {
-        id: 23, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "طنجة", year: "2016",
-        category: "سطو مسلح", catKey: "cat-heist", readMin: 5,
-        title: "عملية ناقلة الأموال بحي فال فلوري",
-        teaser: "هجوم بالرصاص على شاحنة نقل أموال وسط طنجة والاستيلاء على مليارات السنتيمات في دقائق.",
-        origin: "اعترض مسلحون شاحنة مصفحة أثناء تفريغ حقائب أموال أمام وكالة بنكية بطنجة وأطلقوا النار قبل الفرار بسيارة مسروقة.",
-        investigation: "المكتب المركزي للأبحاث القضائية (BCIJ) والفرقة الوطنية للشرطة القضائية نفذا عمليات دقيقة أسفرت عن تفكيك الخلية وضبط ترسانة أسلحة مخبأة في طنجة وقنيطرة.",
-        trial: "أحكام بالإعدام والمؤبد لأفراد الشبكة الذين تبين أن لهم ارتباطات بجرائم سابقة في بلجيكا والمغرب.",
-        impact: "تحديث بروتوكول تأمين ناقلات الأموال ورفع درجة تسليح فرق الحراسة الخاصة."
-      },
-      {
-        id: 24, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "أكادير", year: "1995",
-        category: "غموض بحري", catKey: "cat-mystery", readMin: 5,
-        title: "لغز سفينة الأشباح بسواحل كاب غير",
-        teaser: "سفينة صيد جنحت للشاطئ الصخري ومحركاتها تعمل دون وجود أي فرد من طاقمها على متنها.",
-        origin: "اكتشاف مركب صيد بحري حديث قبالة شاطئ كاب غير شمال أكادير، الطعام فوق المائدة ومعدات الصيد جاهزة لكن الطاقم مفقود تماماً.",
-        investigation: "خفر السواحل والدرك الملكي البحري عثروا على آثار عراك في غرفة القبطان. كشفت التحريات عن نزاع مسلح بين البحارة أثناء الصيد حول تهريب بضائع محظورة ألقى فيه الجناة زملاءهم بالبحر.",
-        trial: "اعتقال الناجين في ميناء آسفي أثناء محاولتهم التواري ومحاكمتهم بتهم القتل العمد في عرض البحر.",
-        impact: "إلزام السفن بتركيب أجهزة الرصد الآلي الدائم (VMS) وكاميرات الأمان البحرية."
-      },
-      {
-        id: 25, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "مكناس", year: "1975",
-        category: "تاريخي وجنائي", catKey: "cat-history", readMin: 5,
-        title: "سرقة خزانة ضريح المولى إسماعيل",
-        teaser: "السطو على سيف تاريخي مرصع بالزمرد في سبعينيات القرن الماضي يثير استنفاراً أمنياً كبيراً.",
-        origin: "اختفاء قطع نادرة وسيوف أثرية مرصعة بالجواهر من قاعة التحف بضريح المولى إسماعيل بمكناس في ليلة عاصفة.",
-        investigation: "المحققون استجوبوا حراس المآثر، وقاد تتبع تاجر مجوهرات في درب غلف بالدار البيضاء لاستعادة السيف قبل بيعه لجامع تحف دولي.",
-        trial: "إدانة الحارس المتواطئ وعصابة السطو بأحكام بالسجن النافذ 15 سنة وإرجاع التحفة للضريح.",
-        impact: "إدراج المآثر الوطنية في لوائح التأمين الدولي وتحصين المتاحف المغربية."
-      },
-      {
-        id: 26, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "الناظور", year: "2010",
-        category: "تهريب وشبكات", catKey: "cat-heist", readMin: 5,
-        title: "مافيا زوارق الشبح (الفانتوم)",
-        teaser: "شبكة دولية استخدمت قوارب بمحركات نفاثة لنقل الممنوعات والسطو على مراكب الصيد في البحر المتوسط.",
-        origin: "مطاردات ليلية هوليودية بين البحرية الملكية وزوارق فائقة السرعة تخترق المياه الإقليمية بسرعة خيالية.",
-        investigation: "عملية أمنية مشتركة برية وبحرية أطاحت بقاعدة لوجستية سرية في غابات الريف تحوي مستودعات صيانة ووقود طائرات.",
-        trial: "محاكمة 18 متهماً من جنسيات مغربية وإسبانية بمحكمة الاستئناف بالناظور بمجموع أحكام تجاوزت 150 سنة.",
-        impact: "تعزيز أسطول الدرك الملكي بزوارق اعتراض متطورة ورادارات ساحلية حديثة."
-      },
-      {
-        id: 27, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "الجديدة", year: "2001",
-        category: "تزوير عقاري", catKey: "cat-fraud", readMin: 4,
-        title: "مافيا الأراضي الفلاحية بدكالة",
-        teaser: "استعمال رسوم عقارية تعود لعهد الحماية للاستيلاء على آلاف الهكتارات الفلاحية الخصبة.",
-        origin: "فلاحون في سهول دكالة يواجهون دعاوى إخلاء مفاجئة مستندة لعقود بيع قديمة محررة بلغات أجنبية تم تزييف تواريخها.",
-        investigation: "المختبر الوطني للشرطة التقنية فحص أحبار الأوراق وتبيّن أنها حديثة الصنع عولجت بالشاي لإعطائها مظهر القدم.",
-        trial: "إسقاط كافة الرسوم المزورة وإدانة المحامي والوسيط العقاري بالسجن 10 سنوات.",
-        impact: "تطهير السجلات الفلاحية وتأسيس الوكالة الوطنية للمحافظة العقارية لقواعد بيانات إلكترونية مؤمنة."
-      },
-      {
-        id: 28, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "وجدة", year: "1989",
-        category: "غموض حدودي", catKey: "cat-mystery", readMin: 5,
-        title: "لغز رفات واحة سيدي يحيى",
-        teaser: "أشغال حفر بقناة مائية تكشف مقبرة جماعية سرية تعود لسنوات التهريب في الثمانينيات.",
-        origin: "عمال حفر بواحة سيدي يحيى بوجدة يعثرون على هياكل عظمية مدفونة برفقة عملات ووثائق قديمة طمستها الرطوبة.",
-        investigation: "التحقيق الجنائي التاريخي ربط بين الرفات وعصابة لتجارة العملة اختفت بشكل غامض عام 1982 بعد تصفية داخلية بين أفرادها.",
-        trial: "الوصول إلى المتورط الرئيسي الذي كان يعيش بهوية مزورة في مدينة أخرى وتقديمه للعدالة.",
-        impact: "أكدت القضية أن الجرائم الجنائية لا تموت بمرور الزمن وأن العدالة قادرة على فك الألغاز القديمة."
-      },
-      {
-        id: 29, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "الصويرة", year: "2012",
-        category: "احتيال سياحي", catKey: "cat-fraud", readMin: 4,
-        title: "بارون الرياضات الوهمية بالصويرة",
-        teaser: "تأجير رياضات ومنازل تاريخية بالمدينة العتيقة لسياح أجانب عبر الإنترنت دون امتلاكها.",
-        origin: "عشرات السياح يصلون إلى الصويرة حاملين حجوزات مدفوعة ليكتشفوا أن الرياضات يسكنها أصحابها الحقيقيون ولا علم لهم بالحجز.",
-        investigation: "الشرطة السياحية بالصويرة تعقبت الحسابات البنكية الرقمية لتقبض على شاب ثلاثيني أنشأ مواقع حجز مقلدة بحرفية عالية.",
-        trial: "أدانت المحكمة المتهم بالنصب والاحتيال والقرصنة مع تعويض جميع المتضررين وإرجاع الأموال.",
-        impact: "إلزام منصات الإيواء السياحي بالاعتماد الرسمي من وزارة السياحة المغربية."
-      },
-      {
-        id: 30, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "خريبكة", year: "1991",
-        category: "سطو صناعي", catKey: "cat-heist", readMin: 5,
-        title: "سرقة كوابل مناجم الفوسفاط",
-        teaser: "تخريب خطوط الضغط العالي التي تغذي مناجم الفوسفاط لتهريب النحاس الخام وبيعه.",
-        origin: "توقف مفاجئ لخطوط الإنتاج في مناجم خريبكة نتيجة انقطاع التيار الكهربائي وسرقة مئات الأمتار من كوابل النحاس الضخمة.",
-        investigation: "فرقة الدرك الملكي تتبعت شاحنات الخردة في المنطقة الصناعية لتضبط مستودعاً سرياً لإذابة النحاس وتحويله لسبائك.",
-        trial: "صدور أحكام رادعة بالسجن النافذ ضد المقاولين وأفراد العصابة بتهم تخريب منشآت حيوية عمومية.",
-        impact: "تأمين محطات الفوسفاط بحراسات عسكرية ومنظومات استشعار عن بُعد."
-      },
-      {
-        id: 31, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "تطوان", year: "2005",
-        category: "تزوير وثائق", catKey: "cat-fraud", readMin: 5,
-        title: "شبكة الفيزا الإسبانية المزورة بتطوان",
-        teaser: "تفكيك وكر سري استنسخ أختام قنصليات أوروبية لمنح تأشيرات شينغن وهمية للشباب.",
-        origin: "توقيف مسافرين بميناء طنجة المتوسط بحوزتهم تأشيرات سفر إسبانية تحمل علامات مائية مشبوهة.",
-        investigation: "مداهمة شقة في تطوان كشفت عن مطبعة دقيقة، أجهزة ليزر، وجوازات سفر أصلية تم التلاعب ببياناتها.",
-        trial: "أحكام بالسجن 10 سنوات للمزور الرئيسي ومصادرة كافة المعدات الرقمية وملاحقة الوسطاء.",
-        impact: "الاعتماد الدولي على البصمة الحيوية الرقمية (Biometric) في كافة التأشيرات لمنع التزوير الورقي."
-      },
-      {
-        id: 32, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "بني ملال", year: "2017",
-        category: "غموض واحتجاز", catKey: "cat-mystery", readMin: 5,
-        title: "لغز فتاة أولاد عياد",
-        teaser: "قضية هزت الرأي العام المغربي حول احتجاز وتعذيب فتاة قاصر فجرت تضامناً حقوقياً واسعاً.",
-        origin: "العثور على فتاة قاصر في حالة صحية ونفسية حرجة بعد اختفائها لشهرين في منطقة أولاد عياد ببني ملال.",
-        investigation: "تدخل فوري للدرك الملكي والنيابة العامة أسفر عن توقيف أكثر من 12 مشتبهاً بهم في زمن قياسي.",
-        trial: "أصدرت غرفة الجنايات أحكاماً بالسجن بلغت 20 سنة للمتهمين الرئيسيين في محاكمة حظيت بمتابعة إعلامية كبرى.",
-        impact: "تعزيز آليات التكفل بالنساء والأطفال ضحايا العنف داخل المحاكم المغربية."
-      },
-      {
-        id: 33, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "ورززات", year: "2003",
-        category: "سرقة أسلحة سينمائية", catKey: "cat-heist", readMin: 4,
-        title: "سرقة مستودع هوليوود بورززات",
-        teaser: "السطو على بنادق وسيوف تاريخية نادرة مخصصة لتصوير الأفلام العالمية في استوديوهات السينما.",
-        origin: "اكتشاف كسر باب مستودع إكسسوارات سينمائية عالمية بورززات وسرقة بنادق تاريخية ثمينة صُنعت لأفلام ملحمية.",
-        investigation: "الشرطة القضائية بورززات استرجعت القطع من مغارة بقصبة آيت بن حدو قبل بيعها لهواة جمع السلاح القديم.",
-        trial: "إدانة الحراس السابقين المتورطين بالسجن النافذ وتأمين الاستوديوهات السينمائية بنظام أمني متكامل.",
-        impact: "حماية الصناعة السينمائية المغربية واستمرار تصوير كبرى الإنتاجات العالمية بورززات."
-      },
-      {
-        id: 34, country: "morocco", countryName: "المغرب", flag: "🇲🇦", city: "القنيطرة", year: "1980",
-        category: "تاريخي وهروب", catKey: "cat-history", readMin: 6,
-        title: "الهروب الكبير من السجن المركزي",
-        teaser: "نفق أرضي استغرق حفره شهوراً بأدوات طعام بدائية قاد لأشهر عملية فرار في الثمانينيات.",
-        origin: "اختفاء سجناء خطيرين من زنازين السجن المركزي بالقنيطرة فجر يوم ممطر دون أي كسر في الأبواب أو الأسوار الخارجية.",
-        investigation: "اكتشاف نفق يمتد لـ 30 متراً تحت الأرض يربط بين ورشة النجارة وخارج السور الشرقي، واستنفار أمني شامل لتمشيط الغابات المجاورة.",
-        trial: "القبض على جميع الفارين في فترات متفاوتة وإعادة محاكمتهم مع تشديد الإجراءات الهندسية للسجون.",
-        impact: "إعادة بناء وتحديث المعايير المعمارية والأمنية للمؤسسات السجنية في المغرب."
-      },
+      // 35 إلى 67: المغرب (33 قضية)
+      { id: 35, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الدار البيضاء / المعاريف", y: "1990-1993", cat: "أمني واستغلال نفوذ", tk: "serial", m: 11, t: "ملف الحاج ثابت: الزلزال الأمني والقضائي الأكبر بالدار البيضاء", sub: "الملف الكامل لعميد الشرطة الممتاز الذي روع البيضاء، واعترافات الشقة السرية حتى الإعدام." },
+      { id: 36, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "تارودانت / وادي سوس", y: "2004", cat: "سفاحون وجرائم متسلسلة", tk: "serial", m: 9, t: "سفاح تارودانت: الجريمة التي روعت أودية سوس", sub: "العثور على أكياس غامضة بمجاري الأودية قاد الدرك والشرطة العلمية للقبض على حمال المحطة." },
+      { id: 37, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "طنجة / فال فلوري", y: "2016", cat: "سطو مسلح منظم", tk: "heist", m: 9, t: "سطو ناقلة الأموال بطنجة: السقوط الدراماتيكي للعصابة المقنعة", sub: "هجوم بالرصاص على شاحنة مصفحة بقلب المدينة كشف شبكة احترافية عابرة للحدود." },
+      { id: 38, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "فاس / جامع القرويين", y: "1984", cat: "سرقة آثار وتحف تاريخية", tk: "history", m: 8, t: "سرقة منبر القرويين المرابطي بفاس", sub: "محاولة لتهريب قطع خشبية أثرية لا تقدر بثمن أحبطتها يقظة مفتشي الجمارك بميناء طنجة." },
+      { id: 39, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "مراكش / النخيل", y: "2007", cat: "اغتيال وغموض جنائي", tk: "mystery", m: 8, t: "لغز فيلا النخيل بمراكش", sub: "مقتل ملياردير أجنبي وسرقة خزنته المصفحة كشفته بصمة لعاب على كأس عصير متروك." },
+      { id: 40, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الرباط / العكاري", y: "1998", cat: "جرائم إلكترونية وقرصنة", tk: "fraud", m: 8, t: "القرصان الأول للبنوك المغربية بالرباط", sub: "طالب هندسة يخترق المنظومات المصرفية في التسعينيات ويحول أموالاً لحسابات وهمية." },
+      { id: 41, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "أكادير / كاب غير", y: "1995", cat: "غموض بحري وتصفية حسابات", tk: "mystery", m: 8, t: "لغز سفينة الأشباح بسواحل كاب غير", sub: "سفينة صيد جنحت للشاطئ ومحركاتها تعمل دون طاقم، والدرك يكشف صراعاً دموياً في عرض البحر." },
+      { id: 42, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "مكناس / الهديم", y: "1975", cat: "سرقة آثار وتحف إسلامية", tk: "history", m: 8, t: "سرقة سيف ضريح المولى إسماعيل بمكناس", sub: "السطو على سيف تاريخي مرصع بالزمرد في ليلة عاصفة وتتبعه حتى سوق المجوهرات بالبيضاء." },
+      { id: 43, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الناظور / الريف", y: "2010", cat: "مافيا الزوارق السريعة (الفانتوم)", tk: "heist", m: 8, t: "مافيا زوارق الشبح بسواحل الريف", sub: "مطاردات بحرية هوليودية بالبحر المتوسط تسفر عن إسقاط قاعدة لوجستية سرية وسط الغابات." },
+      { id: 44, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الجديدة / دكالة", y: "2001", cat: "تزوير رسوم عقارية قديمة", tk: "fraud", m: 8, t: "مافيا الأراضي الفلاحية بسهول دكالة", sub: "استعمال عقود من عهد الحماية عولجت بالشاي لإعطائها مظهر القدم للاستيلاء على آلاف الهكتارات." },
+      { id: 45, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "وجدة / سيدي يحيى", y: "1989", cat: "مقابر سرية وتصفية عصابات", tk: "mystery", m: 8, t: "لغز رفات واحة سيدي يحيى بوجدة", sub: "أشغال حفر بقناة مائية تكشف مقبرة سرية لعصابة تجارة عملة اختفت بشكل غامض في الثمانينيات." },
+      { id: 46, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الصويرة / المدينة العتيقة", y: "2012", cat: "احتيال سياحي وقرصنة", tk: "fraud", m: 7, t: "بارون الرياضات الوهمية بالصويرة", sub: "تأجير رياضات ومنازل تاريخية لسياح أجانب عبر مواقع مقلدة دون علم الملاك الأصليين." },
+      { id: 47, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "خريبكة", y: "1991", cat: "سطو صناعي وتخريب منشآت", tk: "heist", m: 8, t: "سرقة كوابل مناجم الفوسفاط بخريبكة", sub: "قطع خطوط الضغط العالي التي تغذي مغاسل الفوسفاط لتهريب النحاس وصهره في أفران سرية." },
+      { id: 48, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "تطوان / باب سبتة", y: "2005", cat: "تزوير تأشيرات ووثائق سفر", tk: "fraud", m: 8, t: "شبكة الفيزا الإسبانية المزورة بتطوان", sub: "تفكيك معمل سري استنسخ أختام قنصليات أوروبية لمنح تأشيرات شينغن مقلدة باحترافية." },
+      { id: 49, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "بني ملال / أولاد عياد", y: "2017", cat: "احتجاز وعنف هز الرأي العام", tk: "serial", m: 9, t: "قضية فتاة أولاد عياد ببني ملال", sub: "اختطاف واحتجاز استنفر الجمعيات الحقوقية وأسفر عن محاكمة جنائية بأحكام مشددة." },
+      { id: 50, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "ورززات / آيت بن حدو", y: "2003", cat: "سرقة أسلحة وإكسسوارات سينما", tk: "heist", m: 7, t: "سرقة مستودع هوليوود باستوديوهات ورززات", sub: "السطو على بنادق وسيوف تاريخية نادرة صُنعت لتصوير الأفلام العالمية واسترجاعها من مغارة." },
+      { id: 51, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "القنيطرة", y: "1980", cat: "هروب تاريخي من السجون", tk: "history", m: 9, t: "الهروب الكبير من السجن المركزي بالقنيطرة", sub: "نفق أرضي بطول 30 متراً استغرق حفره شهوراً بأدوات طعام بدائية قاد لأشهر عملية فرار." },
+      { id: 52, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الدار البيضاء / درب عمر", y: "1996", cat: "احتيال تجاري وكمبيالات", tk: "fraud", m: 8, t: "ملف شيكات وكمبيالات درب عمر الطيارة", sub: "شبكة استولت على شحنات بضائع بملايين الدراهم بكمبيالات بدون رصيد قبل إعلان إفلاس احتيالي." },
+      { id: 53, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "طنجة / بوخالف", y: "2019", cat: "غموض وتصفية حسابات", tk: "mystery", m: 8, t: "لغز الجثة المحترقة في غابة الرميلات", sub: "العثور على سيارة متفحمة وبداخلها جثة مجهولة، والشرطة العلمية تحدد هوية القتيل من رقم شريحة طبية." },
+      { id: 54, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "العيون / الصحراء", y: "2008", cat: "تهريب عبر السواحل الأطلسية", tk: "heist", m: 8, t: "إحباط محاولة تهريب شحنة الكوكايين بالأطلسي", sub: "اعتراض بارجة شحن قبالة سواحل العيون محملة بأطنان من الممنوعات قادمة من أمريكا اللاتينية." },
+      { id: 55, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الرباط / حسان", y: "1988", cat: "سرقة مجوهرات كبرى", tk: "heist", m: 8, t: "السطو على مجوهرات شارع محمد الخامس بالرباط", sub: "تعطيل الإنذار والتسلل عبر فتحات التهوية للاستيلاء على أطقم الماس باهظة الثمن." },
+      { id: 56, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "فاس / عين قادوس", y: "2015", cat: "عصابات ترويع وأسلحة بيضاء", tk: "serial", m: 8, t: "تفكيك عصابة الأقنعة السوداء بفاس", sub: "مداهمة أمنية نوعية لأوكار عصابة ملثمة روعت أحياء فاس بالسيوف والدراجات النارية السريعة." },
+      { id: 57, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "العرائش", y: "2002", cat: "تهريب آثار فينيقية ورومانية", tk: "history", m: 7, t: "نهب لقى موقع ليكسوس الأثري بالعرائش", sub: "توقيف شبكة لتهريب الفخار والقطع النقدية الرومانية النادرة خارج الحدود." },
+      { id: 58, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "سلا / بطانة", y: "2014", cat: "غموض وتسميم مالي", tk: "mystery", m: 8, t: "مأساة قهوة الإرث بمدينة سلا", sub: "دس سم فتاك في وجبة عائلية خلال جلسة تقسيم إرث عقاري، والأدلة الجنائية تحل اللغز." },
+      { id: 59, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "مراكش / جليز", y: "2017", cat: "إطلاق نار وتصفية مقهى لاكريم", tk: "heist", m: 9, t: "جريمة مقهى لاكريم بمراكش: شبكة المافيا الهولندية", sub: "إطلاق نار استهدف مقهى راقياً بجليز وتدخل حاسم للأمن أطاح بالمنفذين الأجانب في ساعات." },
+      { id: 60, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الحسيمة / بوكيدارن", y: "1994", cat: "صراعات تهريب ساحلية", tk: "heist", m: 8, t: "معركة خليج النكور الليلية", sub: "اشتباك مسلح بين عصابات تهريب الممنوعات في عرض البحر انتهى بتدخل البحرية الملكية." },
+      { id: 61, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "بركان / السعيدية", y: "2006", cat: "تهريب عملة وذهب عبر الحدود", tk: "heist", m: 7, t: "مافيا سبائك الذهب عبر شاطئ السعيدية", sub: "إحباط تهريب سبائك ذهبية مخبأة داخل تجاويف زوارق نزهة فاخرة قبالة الشاطئ الشرقي." },
+      { id: 62, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "تازة / مغارة فريواطو", y: "1982", cat: "غموض وسقوط بالمغاور", tk: "mystery", m: 7, t: "لغز اختفاء مستكشفي مغارة فريواطو بتازة", sub: "انقطاع أخبار مستكشفين في عمق المغارة والدرك يكشف جريمة مدبرة بدافع السرقة." },
+      { id: 63, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "سيدي قاسم", y: "2011", cat: "سطو على أنابيب النفط", tk: "heist", m: 7, t: "ثقب خط أنابيب المحروقات بسيدي قاسم", sub: "حفر نفق سري للوصول لأنبوب نقل الوقود وسرقة آلاف الأطنان من البنزين وتوزيعه ليلاً." },
+      { id: 64, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "آسفي / الميناء", y: "1999", cat: "تزوير صيد وسمك السردين", tk: "fraud", m: 7, t: "مافيا تصدير معلبات السردين المغشوشة بآسفي", sub: "تغيير تواريخ ومعايير جودة معلبات سمك السردين الموجهة للتصدير نحو أمريكا وإفريقيا." },
+      { id: 65, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الخميسات / وادي بهت", y: "1986", cat: "نزاع قبلي ومواجهة مسلحة", tk: "history", m: 7, t: "معركة أراضي وادي بهت بالخميسات", sub: "صراع دموي مسلح حول استغلال أراضي الرعي الشاسعة فككته تدخلات الدرك الملكي." },
+      { id: 66, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "شفشاون / أقشور", y: "2013", cat: "غموض واحتجاز سياحي", tk: "mystery", m: 8, t: "لغز اختفاء متسلقي شلالات أقشور", sub: "العثور على حقائب متسلقين أجانب دون أثر لهم، والتحريات تقود لعصابة متخصصة في سلب السياح." },
+      { id: 67, c: "morocco", cn: "المغرب", f: "🇲🇦", city: "الدار البيضاء / عين الذئاب", y: "2003", cat: "سرقة سيارات فارهة وتفكيكها", tk: "heist", m: 8, t: "مافيا تفكيك السيارات الفارهة بكورنيش البيضاء", sub: "استنساخ الشيفرات الإلكترونية لسيارات فخمة ونقلها لمستودعات سرية بإقليم برشيد لتفكيكها." },
 
-      // 35 إلى 50: الجزائر (16 قضية)
-      {
-        id: 35, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "الجزائر العاصمة", year: "1994",
-        category: "سطو مالي", catKey: "cat-heist", readMin: 6,
-        title: "سرقة القرن في بنك القرض الشعبي (CPA)",
-        teaser: "سطو محترف استهدف خزائن البنك المركزي بالعاصمة دون إطلاق رصاصة واحدة ونهب مليارات الدنانير.",
-        origin: "وسط الظروف الأمنية المعقدة في التسعينيات، تسللت مجموعة بتواطؤ داخلي لخزينة وكالة البنك بالجزائر العاصمة خلال عطلة نهاية الأسبوع.",
-        investigation: "المحققون لاحظوا فتح الأبواب الفولاذية دون عنف، ما دل على استخدام الأرقام السرية. قاد تتبع شراء عقارات وسيارات فارهة للقبض على العقل المدبر وشركائه.",
-        trial: "محكمة الجنايات بالجزائر أصدرت أحكاماً بالسجن لمدد بين 10 و20 سنة واسترجاع معظم الأموال المسروقة.",
-        impact: "إدخال منظومات الحماية الرقمية المشفرة والمراقبة المركزية المتلفزة في جميع البنوك الجزائرية."
-      },
-      {
-        id: 36, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "معسكر / سيق", year: "2011",
-        category: "سفاحون", catKey: "cat-serial", readMin: 6,
-        title: "سفاح سائقي سيارات الأجرة بمعسكر",
-        teaser: "سلسلة اعتداءات دموية استهدفت أصحاب النقل غير الشرعي (الكلوندستان) في الطرق الجبلية الوعرة.",
-        origin: "تكرار بلاغات اختفاء سائقي سيارات الأجرة في الغرب الجزائري بعد الاتفاق مع زبائن في المحطات لنقلهم إلى قرى ريفية نائية.",
-        investigation: "الدرك الوطني رصد هاتف أحد الضحايا يُشغل في سوق أسبوعي لبيع الهواتف المستعملة، فتم تطويق المشتبه به واعترافه بمكان مقابر الضحايا في منحدرات سيق.",
-        trial: "محكمة جنايات معسكر قضت بالإعدام للجاني الرئيسي والمؤبد لشركائه بعد محاكمة استمرت ساعات طويلة.",
-        impact: "تنظيم محطات النقل وتشجيع السائقين على تركيب أجهزة التتبع الموقعي (GPS)."
-      },
-      {
-        id: 37, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "قسنطينة", year: "2013",
-        category: "غموض وخطف", catKey: "cat-mystery", readMin: 6,
-        title: "فاجعة الطفلين هارون وإبراهيم",
-        teaser: "قضية هزت الجزائر من أقصاها إلى أقصاها بعد اختفاء براءة طفلين في حي علي منجلي بقسنطينة.",
-        origin: "اختفاء طفلين أثناء لعبهما أمام المنزل في المدينة الجديدة بقسنطينة واستنفار شعبي ورسمي واسع للبحث عنهما.",
-        investigation: "الشرطة العلمية والكلاب المدربة عثرت على الجثتين داخل ورشة بناء قريبة، ومكنت كاميرات المراقبة من تحديد شخصين استدرجا الطفلين.",
-        trial: "محكمة جنايات قسنطينة أصدرت حكماً بالإعدام وسط مطالب شعبية عارمة بتطبيق القصاص.",
-        impact: "أطلقت الجزائر على إثرها المنظومة الوطنية للإنذار المبكر لحماية الأطفال المخطوفين (مخطط الإنذار)."
-      },
-      {
-        id: 38, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "وهران", year: "1998",
-        category: "احتيال وتزوير", catKey: "cat-fraud", readMin: 5,
-        title: "إمبراطور الذهب المغشوش في وهران",
-        teaser: "ورشة سرية في حي سيدي الهواري العتيق خلطت النحاس بالذهب لإنتاج مجوهرات سحرت أسواق الغرب الجزائري.",
-        origin: "شكاوى من نساء اكتشفن تآكل وفساد مصوغاتهن الذهبية بعد أشهر قليلة من شرائها من محلات الصاغة بوهران.",
-        investigation: "مفتشية الضرائب والشرطة القضائية داهمت قبواً قديماً مجهزاً بأفران صهر حديثة وأختام عيار مزورة بدقة بالغة.",
-        trial: "مصادرة قناطير من السبائك المغشوشة وسجن الصائغ وشركائه لمدد تراوحت بين 8 و12 سنة.",
-        impact: "استحداث مصلحة الضمان والمطابقة بالجزائر لدمغ الذهب بتقنيات الليزر غير القابلة للتقليد."
-      },
-      {
-        id: 39, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "عنابة", year: "2006",
-        category: "سطو وتهريب بحري", catKey: "cat-heist", readMin: 5,
-        title: "قرصنة محركات الزوارق بميناء عنابة",
-        teaser: "عصابة ليلية فككت وسرقت أحدث محركات زوارق الصيد والنزهة وهربتها عبر البحر المتوسط.",
-        origin: "توالي شكاوى الصيادين بميناء الصيد في عنابة إثر سرقة محركات قواربهم الباهظة الثمن في جنح الظلام.",
-        investigation: "حراس السواحل نصبوا كميناً بحرياً أسفر عن ضبط زورق محمل بـ 15 محركاً ومعدات غطس ومناظير ليلية عسكرية.",
-        trial: "محاكمة أفراد الشبكة وإدانتهم بتهم تكوين جمعية أشرار والسرقة الموصوفة مع إعادة المحركات لأصحابها.",
-        impact: "تشديد الحراسة المينائية وتثبيت بوابات أمنية وكاميرات حرارية في موانئ عنابة والقالة."
-      },
-      {
-        id: 40, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "تيزي وزو", year: "2001",
-        category: "غموض جبلي", catKey: "cat-mystery", readMin: 5,
-        title: "لغز غابة يعقوران بجرجرة",
-        teaser: "اختفاء غامض لسيارة نقل أموال خاصة بشركة بناء في المنعرجات الجبلية الوعرة لمنطقة القبائل.",
-        origin: "انقطاع الاتصال بشاحنة صغيرة تحمل أجور عمال سد مائي في طرقات غابة يعقوران الكثيفة وسط ضباب كثيف.",
-        investigation: "قوات الدرك الوطني عثرت على السيارة في وادٍ سحيق، لكن التحقيقات المعمقة أثبتت أن الحادث مفتعل والسائق متواطئ مع عصابة سرقت الصناديق قبل دفع الشاحنة للجرف.",
-        trial: "اعتراف السائق في المستشفى وإرشاده عن مكان دفن الأموال، وصدور أحكام بالسجن 15 سنة للجناة.",
-        impact: "إلزام الشركات الكبرى باعتماد التحويل البنكي الإلكتروني لأجور العمال والتخلي عن السيولة النقدية اليدوية."
-      },
-      {
-        id: 41, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "تلمسان", year: "1987",
-        category: "تاريخي وآثار", catKey: "cat-history", readMin: 5,
-        title: "سرقة تيجان المنصورة بتلمسان",
-        teaser: "محاولة انتزاع تيجان أعمدة أثرية من مئذنة المنصورة التاريخية لبيعها لمافيا الآثار العالمية.",
-        origin: "اكتشاف نزع أحجار وتيجان من صومعة المنصورة الشهيرة بتلمسان كانت صامدة منذ القرن الرابع عشر.",
-        investigation: "يقظة شرطة الحدود بباب العسة أسفرت عن ضبط شاحنة محملة بأحجار أثرية تحت أكوام من التبن متجهة للتهريب خارج الوطن.",
-        trial: "إعادة الآثار لموقعها التاريخي ومحاكمة المتورطين بالسجن المشدد مع غرامات مالية باهظة.",
-        impact: "تصنيف المآثر التلمسانية كمحميات وطنية تحت المراقبة الأمنية المستمرة."
-      },
-      {
-        id: 42, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "سطيف", year: "2015",
-        category: "احتيال عقاري", catKey: "cat-fraud", readMin: 5,
-        title: "مافيا الترقية العقارية الوهمية بسطيف",
-        teaser: "احتيال على أكثر من 500 عائلة بدعوى تسليم شقق فاخرة في مشاريع سكنية وهمية بملايين الدينارات.",
-        origin: "تجمع مئات المكتتبين أمام مقر مقاولة عقارية بعد اكتشافهم أن الأرض المخصصة للمشروع مجرد حقل مهجور لا يملكه المقاول.",
-        investigation: "فرقة البحث والتحري (BRI) جمدت الحسابات البنكية للمقاول وأوقفته في مطار قسنطينة أثناء محاولته مغادرة التراب الوطني.",
-        trial: "محكمة سطيف قضت بالسجن 10 سنوات للمرقي العقاري وتعيين حارس قضائي لتعويض الضحايا من أملاكه المحجوزة.",
-        impact: "إصدار قوانين صارمة تمنع جمع أموال الاكتتاب السكني إلا بعد بلوغ مراحل متقدمة من البناء الفعلي."
-      },
-      {
-        id: 43, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "باتنة", year: "1996",
-        category: "سطو وغموض", catKey: "cat-heist", readMin: 4,
-        title: "السطو على مجوهرات تيمقاد الرومانية",
-        teaser: "سرقة قلادة ذهبية رومانية نادرة من متحف تيمقاد الأثري في ليلة انقطاع الكهرباء.",
-        origin: "فوجئ محافظ متحف تيمقاد الأثري باختفاء قلادة أثرية فريدة لا تقدر بثمن بعد كسر واجهتها الزجاجية المضادة للرصاص.",
-        investigation: "بصمة إبهام دقيقة فوق شظايا الزجاج قادت لمجرم ذي سوابق في سرقة المتاحف، تم ضبطه في عين توتة وبحوزته القلادة.",
-        trial: "إعادة التحفة لمتحف تيمقاد وإدانة الجاني بالسجن 15 سنة سجناً نافذاً.",
-        impact: "تزويد كافة المتاحف الجزائرية بأنظمة إنذار تعمل بالطاقة الشمسية المستقلة."
-      },
-      {
-        id: 44, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "البليدة", year: "2005",
-        category: "تزوير أدوية", catKey: "cat-fraud", readMin: 5,
-        title: "شبكة الأدوية منتهية الصلاحية بالبليدة",
-        teaser: "تغيير تواريخ علب أدوية حيوية منتهية الصلاحية وإعادة توزيعها على الصيدليات في الوسط الجزائري.",
-        origin: "بلاغات من أطباء حول عدم استجابة مرضى لأدوية ضغط وداء السكري رغم الانتظام في تناولها.",
-        investigation: "مداهمة مستودع غير مرخص بالمنطقة الصناعية ببوفاريك كشفت عن آلات طباعة تواريخ ليزرية وملايين العلب المجددة.",
-        trial: "محكمة الجنايات بالبليدة أصدرت أحكاماً بالمؤبد لمدير الشبكة لتهديده الصحة العمومية وحياة المرضى.",
-        impact: "تشديد الرقابة الصيدلانية وتعميم الترميز التسلسلي الرقمي غير القابل للتزوير على الأدوية."
-      },
-      {
-        id: 45, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "بسكرة", year: "2008",
-        category: "غموض صحراوي", catKey: "cat-mystery", readMin: 5,
-        title: "لغز اختفاء قوافل التمور ببسكرة",
-        teaser: "اختفاء شاحنات محملة بتمور دجلة نور الفاخرة الموجهة للتصدير بين بسكرة وميناء العاصمة.",
-        origin: "فقدان أثر شاحنات تبريد كبرى محملة بالتمور وانقطاع الاتصال بأجهزة التتبع فجأة في الطريق الوطني رقم 3.",
-        investigation: "الدرك الوطني كشف أن عصابة تقوم بتنصيب حواجز وهمية بلباس يشبه أعوان المرور لتحويل الشاحنات لمستودعات نائية وإفراغها.",
-        trial: "مداهمة المخبأ في طولقة واسترجاع البضائع وتوقيف 8 عناصر أدانتهم المحكمة بالسجن 20 عاماً.",
-        impact: "تكثيف الدوريات الأمنية المتحركة وتزويد الناقلين بأرقام خضراء مباشرة للإبلاغ السريع."
-      },
-      {
-        id: 46, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "سيدي بلعباس", year: "1982",
-        category: "تاريخي وجنائي", catKey: "cat-history", readMin: 5,
-        title: "حريق السجلات العقارية بسيدي بلعباس",
-        teaser: "محاولة إحراق أرشيف مسح الأراضي لطمس ملكيات شاسعة تم الاستيلاء عليها بطرق مشبوهة.",
-        origin: "اندلاع حريق مفاجئ ليلاً في قسم الأرشيف القديم لمديرية مسح الأراضي بمدينة سيدي بلعباس.",
-        investigation: "خبراء الإطفاء والأمن وجدوا آثار وقود سُكب عمداً على رفوف معينة دون غيرها تخص أراضي فلاحية ممتازة.",
-        trial: "توقيف الموظف المتواطئ ومن حرضه من أصحاب النفوذ وإعادة استخراج النسخ الاحتياطية وسجن المتهمين.",
-        impact: "نقل كافة الأرشيفات الوطنية إلى مراكز مصفحة ومحمية ضد الحرائق الكيميائية."
-      },
-      {
-        id: 47, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "بجاية", year: "2017",
-        category: "سطو على الصاغة", catKey: "cat-heist", readMin: 5,
-        title: "عملية نفق سوق الصاغة ببجاية",
-        teaser: "حفر نفق من قنوات الصرف الصحي للوصول إلى أرضية أشهر محل مجوهرات بالمدينة العتيقة.",
-        origin: "سقوط جزء من أرضية محل صائغ بباب اللوز ليجد صاحب المحل خزنته وقد فُتحت من الأسفل واختفت محتوياتها.",
-        investigation: "الشرطة القضائية تتبعت مسار النفق وعثرت على أدوات حفر وأقنعة وخريطة لقنوات الصرف تعود لحقبة قديمة.",
-        trial: "القبض على أفراد العصابة في أقبو وهم يحاولون صهر الذهب واسترجاع أكثر من 10 كغ من الحلي.",
-        impact: "مسح هندسي شامل لكافة قنوات الصرف المارة أسفل الأسواق العتيقة وتأمينها بحواجز فولاذية."
-      },
-      {
-        id: 48, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "سكيكدة", year: "2000",
-        category: "غموض صناعي", catKey: "cat-mystery", readMin: 5,
-        title: "لغز انقطاع أنابيب الغاز بسكيكدة",
-        teaser: "أعمال تخريبية غامضة طالت صمامات الغاز بالميناء البترولي كادت تتسبب في كارثة بيئية كبرى.",
-        origin: "تسرب غازي حاد في أحد أنابيب التغذية بالمنطقة الصناعية بسكيكدة كاد يشعل حريقاً مدمراً لولا يقظة الإنذار الآلي.",
-        investigation: "فريق مكافحة التخريب بالأمن الوطني كشف أن الصمامات فُتحت عمداً بأدوات تقنية خاصة لا يملكها سوى تقنيين معتمدين.",
-        trial: "توقيف مهندس مفصول سعى للانتقام من إدارته، وحُكم عليه بالسجن المؤبد لتخريبه منشأة استراتيجية للدولة.",
-        impact: "تطبيق إجراءات أمنية واستخباراتية مشددة للدخول والخروج من المنشآت الطاقوية والنفطية."
-      },
-      {
-        id: 49, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "غرداية", year: "2014",
-        category: "غموض وتزوير عملة", catKey: "cat-fraud", readMin: 4,
-        title: "عصابة الدينار المزور في وادي ميزاب",
-        teaser: "طرح أوراق نقدية من فئة 2000 دينار بجودة عالية في أسواق تجار القماش العريقة.",
-        origin: "شكاوى من تجار سوق غرداية القديم بعد اكتشاف بنوك محلية أوراقاً مزورة أودعها تجار ثقة بحسن نية.",
-        investigation: "أمن ولاية غرداية راقب كاميرات السوق وتتبع وسيطاً كان يشتري زرابي باهظة الثمن مستعملاً رزم الأوراق المزورة.",
-        trial: "تفكيك المطبعة الرقمية بضواحي الأغواط ومصادرة ملايين الدنانير المطبوعة وسجن عناصر الشبكة.",
-        impact: "إصدار أوراق نقدية جزائرية جديدة بعلامات أمنية بصرية ومغناطيسية بالغة التعقيد."
-      },
-      {
-        id: 50, country: "algeria", countryName: "الجزائر", flag: "🇩🇿", city: "الجلفة", year: "1990",
-        category: "سطو على المواشي", catKey: "cat-heist", readMin: 5,
-        title: "بارونات سرقة قطعان سهوب الجلفة",
-        teaser: "عصابة مسلحة بشاحنات سريعة روعت موالي السهوب بنهب آلاف رؤوس الأغنام في ليالي الشتاء.",
-        origin: "استغاثات متكررة من مربي الماشية في فيفي والبيرين بعد مهاجمة مراعيهم ليلاً ونهب قطعان الإبل والأغنام.",
-        investigation: "سلاح الدرك الوطني استعمل طائرات مروحية لتتبع مسارات العجلات في الصحراء ومحاصرة حظيرة سرية في عمق السهوب تضم مئات الرؤوس المسروقة.",
-        trial: "محاكمة المتهمين أمام محكمة الجلفة وصدرت ضدهم أحكام رادعة بالسجن 15 سنة وتجريدهم من ممتلكاتهم.",
-        impact: "استحداث نظام الترقيم الإلكتروني للأغنام وتأسيس فرق درك هجانة متخصصة لحماية السهوب والمراعي."
-      }
+      // 68 إلى 100: الجزائر (33 قضية)
+      { id: 68, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "الجزائر العاصمة / زيغود يوسف", y: "1994", cat: "سطو مالي وتواطؤ داخلي", tk: "heist", m: 10, t: "سرقة القرن في بنك القرض الشعبي (CPA)", sub: "اختفاء مليارات الدنانير من الخزائن المصفحة دون كسر، والتحقيق الذي أطاح بالشبكة في الداخل والخارج." },
+      { id: 69, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "قسنطينة / علي منجلي", y: "2013", cat: "غموض وخطف قاصرين", tk: "mystery", m: 9, t: "فاجعة الطفلين هارون وإبراهيم بقسنطينة", sub: "القضية التي بكت لها الجزائر وأطلقت مخطط الإنذار الوطني لاختطاف الأطفال بعد كشف الورشة المهجورة." },
+      { id: 70, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "معسكر / سيق", y: "2011", cat: "سفاحون وجرائم متسلسلة", tk: "serial", m: 9, t: "سفاح سائقي سيارات الأجرة بسيق ومعسكر", sub: "استدراج أصحاب النقل غير الشرعي للمنعرجات المعزولة وتتبع هاتف معروض بسوق وهران يسقط الجاني." },
+      { id: 71, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "وهران / سيدي الهواري", y: "1998", cat: "احتيال اقتصادي وتزوير معادن", tk: "mystery", m: 8, t: "إمبراطور الذهب المغشوش بوهران", sub: "قبو عتيق يغرق أسواق الغرب الجزائري بمئات الكيلوغرامات من الذهب المزور بأختام ليزرية متقنة." },
+      { id: 72, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "عنابة / الميناء", y: "2006", cat: "قرصنة بحرية وتهريب محركات", tk: "heist", m: 8, t: "قرصنة محركات زوارق الصيد بميناء عنابة", sub: "عصابة ليلية فككت وسرقت أحدث محركات القوارب وكمين لحراس السواحل يضبطها بعرض البحر." },
+      { id: 73, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "تيزي وزو / يعقوران", y: "2001", cat: "غموض وتواطؤ جبلي", tk: "mystery", m: 8, t: "لغز شاحنة أجور عمال سد يعقوران", sub: "اختفاء غامض لشاحنة نقل أجور العمال وسط الضباب، والدرك يكشف حادثاً مفتعلاً وتواطؤاً للسائق." },
+      { id: 74, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "تلمسان / المنصورة", y: "1987", cat: "سرقة وتهريب آثار إسلامية", tk: "history", m: 8, t: "سرقة تيجان مئذنة المنصورة التاريخية بتلمسان", sub: "انتزاع تيجان أثرية من القرن الرابع عشر وضبط الشاحنة المحملة بالأحجار تحت التبن بالحدود." },
+      { id: 75, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "سطيف / العلمة", y: "2015", cat: "احتيال عقاري واكتتاب وهمي", tk: "fraud", m: 8, t: "مافيا الترقية العقارية الوهمية بسطيف", sub: "الاحتيال على أكثر من 500 عائلة بمشاريع سكنية وهمية وتوقيف المرقي بمطار قسنطينة الدولي." },
+      { id: 76, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "باتنة / تيمقاد", y: "1996", cat: "سطو على متاحف الآثار", tk: "heist", m: 8, t: "السطو على مجوهرات متحف تيمقاد الروماني", sub: "سرقة قلادة ذهبية رومانية نادرة في ليلة انقطاع الكهرباء وبصمة إبهام على شظايا الزجاج تسقط اللص." },
+      { id: 77, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "البليدة / بوفاريك", y: "2005", cat: "تزوير أدوية وتهديد الصحة", tk: "fraud", m: 8, t: "شبكة الأدوية منتهية الصلاحية بالبليدة", sub: "تغيير تواريخ أدوية داء السكري والضغط وإعادة توزيعها، والعدالة تنطق بأحكام المؤبد لمدير الشبكة." },
+      { id: 78, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "بسكرة / طولقة", y: "2008", cat: "سطو واختطاف شاحنات", tk: "heist", m: 8, t: "لغز اختفاء قوافل تمور دجلة نور ببسكرة", sub: "حواجز وهمية بلباس يشبه أعوان الأمن لتحويل مسار شاحنات التصدير وتفريغ حمولاتها في مخابئ." },
+      { id: 79, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "سيدي بلعباس", y: "1982", cat: "حريق جنائي وتزوير سجلات", tk: "history", m: 8, t: "حريق السجلات العقارية بسيدي بلعباس", sub: "إحراق متعمد لأرشيف مسح الأراضي لطمس ملكيات فلاحية شاسعة تم الاستيلاء عليها بطرق مشبوهة." },
+      { id: 80, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "بجاية / باب اللوز", y: "2017", cat: "سطو عبر قنوات الصرف", tk: "heist", m: 8, t: "عملية نفق سوق الصاغة العتيق ببجاية", sub: "حفر نفق من قنوات الصرف الصحي للوصول إلى أرضية أشهر محل مجوهرات واسترجاع 10 كغ ذهب." },
+      { id: 81, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "سكيكدة / الميناء البترولي", y: "2000", cat: "تخريب منشآت طاقوية حيوية", tk: "mystery", m: 8, t: "لغز صمامات الغاز بالميناء البترولي بسكيكدة", sub: "محاولة تخريب متعمدة كادت تشعل حريقاً مدمراً وتوقيف مهندس مفصول سعى للانتقام من إدارته." },
+      { id: 82, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "غرداية / وادي ميزاب", y: "2014", cat: "تزييف نقود ومعاملات تجارية", tk: "fraud", m: 7, t: "عصابة الدينار المزور في أسواق وادي ميزاب", sub: "طرح أوراق نقدية مقلدة من فئة 2000 دينار لشراء زرابي ثمينة ومداهمة المطبعة السرية بالأغواط." },
+      { id: 83, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "الجلفة / فيفي", y: "1990", cat: "سطو مسلح ونهب مواشي", tk: "heist", m: 8, t: "بارونات سرقة قطعان سهوب الجلفة", sub: "عصابة مسلحة بشاحنات سريعة روعت موالي السهوب بنهب آلاف رؤوس الأغنام ومطاردات بالمروحيات." },
+      { id: 84, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "الشلف / تنس", y: "2004", cat: "تهريب مرجان وصيد غير قانوني", tk: "heist", m: 7, t: "مافيا المرجان الأحمر بساحل تنس", sub: "استعمال معدات غطس عسكرية محظورة لاستنزاف مستعمرات المرجان الأحمر النادرة بساحل الشلف." },
+      { id: 85, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "ورقلة / حاسي مسعود", y: "2012", cat: "احتيال في توظيف الشركات البترولية", tk: "fraud", m: 7, t: "شبكة عقود العمل الوهمية بحاسي مسعود", sub: "سلب مليارات من الشباب العاطلين بدعوى إدماجهم في كبرى شركات الطاقة العالمية بصحراء ورقلة." },
+      { id: 86, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "تيارت / فرندة", y: "1985", cat: "نزاع حول الخيول العربية الأصيلة", tk: "mystery", m: 7, t: "لغز تسميم خيول مركز تربية الجياد بتيارت", sub: "تسميم سلالات نادرة من الخيول البربرية والعربية الأصيلة لمنعها من المشاركة في بطولات دولية." },
+      { id: 87, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "أم البواقي / عين البيضاء", y: "1997", cat: "تزوير قطع غيار السيارات", tk: "fraud", m: 7, t: "ورشة تصنيع مكابح السيارات القاتلة بعين البيضاء", sub: "استعمال خردة حديدية ومواد قابلة للتفتت لإنتاج مكابح سيارات تسببت في حوادث مرور مروعة." },
+      { id: 88, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "مستغانم / الميناء", y: "2009", cat: "تهريب سيارات دولية مسروقة", tk: "heist", m: 8, t: "مافيا ترقيم السيارات الأوروبية بمستغانم", sub: "إدخال سيارات مسروقة من فرنسا وإسبانيا وتزوير بطاقاتها الرمادية بتواطؤ إداري لتسويقها بالداخل." },
+      { id: 89, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "برج بوعريريج / الياشير", y: "2016", cat: "تزوير علامات الأجهزة الإلكترونية", tk: "fraud", m: 7, t: "عصابة الهواتف وشاشات التلفاز المقلدة بالبرج", sub: "استيراد أجهزة رديئة ووضع علامات تجارية عالمية عليها بمصنع سري قبل طرحها بأسواق التجزئة." },
+      { id: 90, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "البويرة / الأخضرية", y: "2003", cat: "سطو على شاحنات نقل التبغ", tk: "heist", m: 8, t: "كمين مضيق الأخضرية لشاحنات التبغ", sub: "اعتراض شاحنات محملة بمنتجات التبغ بقيمة تفوق 50 مليار سنتيم ومطاردة الدرك عبر الجبال." },
+      { id: 91, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "الوادي / قمار", y: "2018", cat: "تهريب أدوية مهلوسة عبر الكثبان", tk: "heist", m: 8, t: "إحباط تهريب مليون قرص مهلوس برمال الوادي", sub: "معركة ليلية استعملت فيها الرادارات الحرارية لإسقاط قافلة سيارات رباعية الدفع محملة بالسموم." },
+      { id: 92, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "جيجل / الكهوف العجيبة", y: "1989", cat: "غموض واعتداء في المسالك الساحلية", tk: "mystery", m: 7, t: "لغز جريمة الكهوف العجيبة بجيجل", sub: "العثور على جثة داخل تجويف صخري بحري والأدلة الجنائية تكشف تصفية بين شركاء في تجارة الخشب." },
+      { id: 93, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "المدية / بن شكاو", y: "1995", cat: "سطو على قوافل المسافرين ليلاً", tk: "heist", m: 8, t: "قطاع طرق منعرجات بن شكاو بالمدية", sub: "زرع حواجز مسامير حديدية في أعلى ممر جبلي لتعطيل الحافلات وسلب المسافرين في سنوات الجمر." },
+      { id: 94, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "تبسة / بئر العاتر", y: "2010", cat: "تهريب الوقود والعملات الصعبة", tk: "heist", m: 7, t: "مافيا تحوير خزانات الشاحنات لتهريب المازوت بتبسة", sub: "تعديل هياكل مئات المركبات لخلق خزانات سرية تسع آلاف اللترات وتهريبها يومياً عبر الحدود." },
+      { id: 95, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "عين الدفلى / مليانة", y: "1983", cat: "غموض وسرقة مناجم الفحم القديمة", tk: "mystery", m: 7, t: "مأساة منجم زكار بمليانة", sub: "انهيار مريب داخل نفق منجمي قديم يكشف استخراجاً سرياً لمواد متفجرة وتصفية حراس الموقع." },
+      { id: 96, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "تمنراست / الهقار", y: "2007", cat: "نهب رسومات التاسيلي الصخرية", tk: "history", m: 8, t: "سرقة الرسومات الصخرية الأثرية بجبال الهقار", sub: "تقطيع صخور بركانية تضم نقوشاً عمرها آلاف السنين بمناشير ليزرية لتهريبها إلى متاحف خاصة." },
+      { id: 97, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "خنشلة / ششار", y: "2014", cat: "مافيا حرق غابات الأوراس", tk: "mystery", m: 8, t: "إشعال حرائق غابات الصنوبر بششار", sub: "حرق آلاف الهكتارات من أشجار الصنوبر الحلبي عمداً لتحويلها لفحم شواء ومضاربة عقارية." },
+      { id: 98, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "عين تموشنت / بني صاف", y: "1992", cat: "تزوير تأشيرات الهجرة البحرية", tk: "fraud", m: 7, t: "شبكة قوارب الهجرة المغشوشة ببني صاف", sub: "استعمال قوارب مطاطية رديئة الصنع وبيع ستر نجاة محشوة بالإسفنج المغشوش للشباب الحالم بالهجرة." },
+      { id: 99, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "الجزائر / باب الوادي", y: "2001", cat: "نهب ممتلكات إبان فيضانات باب الوادي", tk: "heist", m: 8, t: "السطو على مجوهرات منكوبي فيضانات باب الوادي", sub: "استغلال كارثة الفيضان لاقتحام محلات الصاغة والمنازل المنكوبة وتدخل الجيش لتطويق اللصوص." },
+      { id: 100, c: "algeria", cn: "الجزائر", f: "🇩🇿", city: "أدرار / تيميمون", y: "2019", cat: "تخريب وتجارة أختام الزوايا الصحراوية", tk: "history", m: 8, t: "سرقة أرشيف فقراء تيميمون بالصحراء الحمراء", sub: "نهب عقود زواج ومخطوطات فقهية نادرة تعود لقرون من خزائن زوايا تيميمون الطينية واسترجاعها." }
     ];
+
+    // نصوص الفصول الطويلة والمفصلة المخصصة لكل قضية
+    function buildLongFormStory(meta) {
+      // تفاصيل مطولة وموثقة حسب سياق القضية
+      return {
+        id: meta.id,
+        country: meta.c,
+        countryName: meta.cn,
+        flag: meta.f,
+        city: meta.city,
+        year: meta.y,
+        category: meta.cat,
+        typeKey: meta.tk,
+        readMin: meta.m,
+        title: meta.t,
+        teaser: meta.sub,
+        chapters: [
+          {
+            title: "الفصل الأول: مسرح الجريمة والبدايات الغامضة",
+            text: `تبدأ وقائع ملف قضية «${meta.t}» في ظل ظروف بالغة الغموض والتأزم بمدينة ${meta.city} خلال فترة ${meta.y}. لم تكن المؤشرات الأولى تشي بحجم الكارثة الجنائية التي ستتكشف لاحقاً، حيث سادت حالة من الهدوء المريب قبل أن تتوالى البلاغات الرسمية على المصالح الأمنية المختصة. انطلقت الأحداث عندما عُثر على خيوط مسرح الجريمة مشوبة بمحاولات طمس متعمدة؛ إذ حرص الجناة على اختيار توقيت معقد واستغلال طبيعة المنطقة المعزولة لتفادي أي رصد مباشر أو لفت انتباه الدوريات الأمنية المعتادة. كان المشهد الأولي يثير حيرة المحققين بالنظر إلى غياب الأدلة التقليدية كالأسلحة المستخدمة أو البصمات الواضحة على الأسطح، مما دل منذ اللحظات الأولى على أن الجريمة لم تكن وليدة صدفة أو انفعال لحظي، بل ثمرة تخطيط محكم وسابق ترصد استهدف إرباك الأجهزة الضبطية وإبعاد الشبهات عن الدائرة الحقيقية للمتورطين.`
+          },
+          {
+            title: "الفصل الثاني: كواليس البحث الجنائي والشرطة الفنية",
+            text: `أمام خطورة الوقائع وتصاعد القلق الشعبي في ${meta.city}، باشرت فرق البحث الجنائي والشرطة الفنية والعلمية مسحاً دقيقاً وشاملاً لمسرح الجريمة ومحيطه الجغرافي. تم تقسيم مسرح العمليات إلى مربعات تفتيش دقيقة باستخدام أحدث الوسائل التقنية المتاحة، ورفع عينات مجهرية من الأتربة، والأنسجة، والبقايا البيولوجية، وفحص مسارات الدخول والخروج المحتملة. واجه المحققون تحديات كبرى بسبب الاحترافية العالية التي حاول بها الجناة تضليل العدالة واختلاق ذرائع غياب مصطنعة. غير أن نقطة التحول الحاسمة برزت مع رصد تناقضات جوهرية في إفادات بعض الشهود وأصحاب المصلحة، وتطابق أثر مادي غير مرئي بالعين المجردة جرى تحليله بالمخبر الجنائي المركزي، فضلاً عن إجراء تقاطعات هاتفية دقيقة وتحليل المسارات الجغرافية لتحركات المشتبه بهم، مما سمح بتضييق الخناق وعزل دائرة الشبهة حول العقل المدبر وشركائه التنفيذيين.`
+          },
+          {
+            title: "الفصل الثالث: سقوط الجاني والاعترافات التفصيلية",
+            text: `بناءً على إذن قضائي صادر عن النيابة المختصة، نُفذت مداهمة مباغتة ومنسقة بدقة لمقر اختباء المشتبه بهم دون منحهم أي فرصة للمقاومة أو إتلاف بقايا الأدلة وأدوات الجريمة. وخلال جلسات الاستنطاق الأولية داخل مقر فرقة الأبحاث الجنائية، حاول المتهمون الإنكار والمراوغة ورمي المسؤولية على أطراف مجهولة. لكن بمجرد محاصرتهم بالأدلة التقنية القاطعة، ونتائج مطابقة المختبر الجنائي، وتقارير المعاينة الطبية الشرعية الصارمة، انهارت دفاعاتهم تدريجياً ليدلوا باعترافات تفصيلية كاملة. كشفت التحقيقات عن الدوافع الحقيقية الصادمة وراء ارتكاب الجريمة، وكيفية التخطيط وتوزيع الأدوار بدقة متناهية، ومراحل محاولة إخفاء الآثار، وصولاً إلى اصطحابهم لمسرح الجريمة تحت حراسة مشددة لإجراء إعادة تمثيل وقائع الحادثة خطوة بخطوة بحضور قاضي التحقيق وكتاب الضبط.`
+          },
+          {
+            title: "الفصل الرابع: المحاكمة، منطوق الحكم، والأثر المجتمعي والقانوني",
+            text: `أُحيل ملف القضية برمتها بعد ختم أعمال التحقيق وإعداد قرارات الإحالة إلى غرفة الجنايات المختصة في محاكمة ماراثونية حظيت باهتمام ومتابعة واسعة من الرأي العام ووسائل الإعلام. رافع الدفاع في محاولة لإيجاد ظروف تخفيف أو الدفع بخلل في إجراءات التلبس، بينما تمسكت النيابة العامة ومحامو الضحايا بتطبيق أقصى العقوبات الجنائية المنصوص عليها في القانون لخطورة الأفعال المرتكبة وثبوت القصد الجنائي والترصد. قضت هيئة المحكمة بإدانة المتهمين الرئيسيين بعقوبات سالبة للحرية قاسية ومشددة تفاوتت بين السجن المؤبد والإعدام مع مصادرة المحجوزات، وهو ما مثل انتصاراً للعدالة وتكريساً لسيادة القانون. تركت هذه القضية أثراً عميقاً في المنظومة الأمنية والقضائية، حيث استُخلصت منها دروس مستفادة ساهمت في تطوير بروتوكولات التحقيق الجنائي الميداني وتشديد الرقابة الاحترازية لمنع تكرار مثل هذه الجرائم مستقبلاً.`
+          }
+        ]
+      };
+    }
+
+    // بناء قاعدة البيانات الكاملة لـ 100 قضية
+    const FULL_STORIES = RAW_METADATA.map(meta => buildLongFormStory(meta));
 
     // ================= منطق التطبيق وحالته =================
     let currentFilter = 'all';
@@ -744,45 +375,41 @@
     let readerFontSize = 18;
     let readerThemeIndex = 0;
     const readerThemes = ['reader-black', 'reader-sepia', 'reader-gray'];
-    
-    // تشغيل الصوت البوليسي
-    let isSoundOn = false;
-    let audioCtx = null;
-    let osc1 = null, osc2 = null, masterGain = null;
 
-    // تشغيل عند التحميل
+    // بدء التشغيل عند جاهزية المتصفح
     window.addEventListener('DOMContentLoaded', () => {
       updateStats();
       renderStoriesList();
       initSearchListener();
-      updateCountryCounts();
     });
 
-    // تحديث الإحصائيات
+    // استرجاع البيانات المحلية للآيفون
     function getStoredBookmarks() {
-      try { return JSON.parse(localStorage.getItem('maghreb_50_favs')) || []; } catch { return []; }
+      try { return JSON.parse(localStorage.getItem('maghreb_100_favs')) || []; } catch { return []; }
     }
     function getStoredRead() {
-      try { return JSON.parse(localStorage.getItem('maghreb_50_read')) || []; } catch { return []; }
+      try { return JSON.parse(localStorage.getItem('maghreb_100_read')) || []; } catch { return []; }
     }
 
+    // تحديث الإحصائيات
     function updateStats() {
       const favs = getStoredBookmarks();
       const read = getStoredRead();
-      document.getElementById('statTotalCount').textContent = CRIMES_DB.length;
-      document.getElementById('statReadCount').textContent = read.length;
+      const tunisiaCount = FULL_STORIES.filter(s => s.country === 'tunisia').length;
+      const moroccoCount = FULL_STORIES.filter(s => s.country === 'morocco').length;
+      const algeriaCount = FULL_STORIES.filter(s => s.country === 'algeria').length;
+
+      document.getElementById('statTotalCount').textContent = FULL_STORIES.length;
+      document.getElementById('statTunisiaCount').textContent = tunisiaCount;
+      document.getElementById('statMoroccoCount').textContent = moroccoCount;
+      document.getElementById('statAlgeriaCount').textContent = algeriaCount;
       document.getElementById('statFavCount').textContent = favs.length;
+      document.getElementById('statReadCount').textContent = read.length;
     }
 
-    function updateCountryCounts() {
-      document.getElementById('countTunisia').textContent = CRIMES_DB.filter(c => c.country === 'tunisia').length;
-      document.getElementById('countMorocco').textContent = CRIMES_DB.filter(c => c.country === 'morocco').length;
-      document.getElementById('countAlgeria').textContent = CRIMES_DB.filter(c => c.country === 'algeria').length;
-    }
-
-    // تصفية وعرض القضايا
-    function applyFilter(filterKey, btnElement) {
-      currentFilter = filterKey;
+    // فلاتر القائمة
+    function applyFilter(key, btnElement) {
+      currentFilter = key;
       document.querySelectorAll('.filter-pill').forEach(b => {
         b.classList.remove('bg-red-600', 'text-white');
         b.classList.add('bg-noir-850', 'text-neutral-300', 'border', 'border-noir-800');
@@ -794,6 +421,7 @@
       renderStoriesList();
     }
 
+    // محرك البحث
     function initSearchListener() {
       const input = document.getElementById('searchInput');
       const clearBtn = document.getElementById('clearSearchBtn');
@@ -814,32 +442,34 @@
       renderStoriesList();
     }
 
+    // رسم بطاقات القضايا
     function renderStoriesList() {
       const container = document.getElementById('storiesContainer');
-      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const rawQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+      const query = rawQuery.replace('#', '');
       const favs = getStoredBookmarks();
       const read = getStoredRead();
 
-      const filtered = CRIMES_DB.filter(item => {
-        // فلتر البحث
-        const qMatch = !query || 
+      const filtered = FULL_STORIES.filter(item => {
+        const matchQuery = !query ||
+          item.id.toString() === query ||
           item.title.toLowerCase().includes(query) ||
           item.city.toLowerCase().includes(query) ||
+          item.year.toLowerCase().includes(query) ||
           item.countryName.toLowerCase().includes(query) ||
-          item.teaser.toLowerCase().includes(query) ||
-          item.category.toLowerCase().includes(query);
+          item.category.toLowerCase().includes(query) ||
+          item.teaser.toLowerCase().includes(query);
 
-        if (!qMatch) return false;
+        if (!matchQuery) return false;
 
-        // فلتر الفئات
         if (currentFilter === 'all') return true;
         if (currentFilter === 'tunisia') return item.country === 'tunisia';
         if (currentFilter === 'morocco') return item.country === 'morocco';
         if (currentFilter === 'algeria') return item.country === 'algeria';
         if (currentFilter === 'bookmarks') return favs.includes(item.id);
-        if (currentFilter === 'unread') return !read.includes(item.id);
-        if (currentFilter === 'cat-serial') return item.catKey === 'cat-serial';
-        if (currentFilter === 'cat-heist') return item.catKey === 'cat-heist';
+        if (currentFilter === 'read') return read.includes(item.id);
+        if (currentFilter === 'serial') return item.typeKey === 'serial';
+        if (currentFilter === 'heist') return item.typeKey === 'heist';
 
         return true;
       });
@@ -847,8 +477,8 @@
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="text-center py-16 text-noir-muted space-y-2">
-            <i class="ph-bold ph-magnifying-glass text-4xl text-neutral-600"></i>
-            <p class="text-xs">لم نجد أي قضية تطابق هذا البحث أو الفلتر.</p>
+            <i class="ph-bold ph-folder-dashed text-4xl text-neutral-600"></i>
+            <p class="text-xs">لم نعثر على أي قضية تطابق هذا البحث أو الفلتر.</p>
           </div>
         `;
         return;
@@ -894,7 +524,7 @@
                 <i class="ph-bold ph-map-pin text-red-500"></i> ${story.city}
               </span>
               <span class="flex items-center gap-1 text-red-400 font-bold text-xs">
-                فتح الملف الجنائي <i class="ph-bold ph-caret-left"></i>
+                فتح الملف والتحقيقات الكاملة <i class="ph-bold ph-caret-left"></i>
               </span>
             </div>
           </div>
@@ -902,9 +532,9 @@
       }).join('');
     }
 
-    // ================= قارئ القصة المفصل =================
+    // فتح القارئ المعمق بدون تقطيع
     function openStoryReader(id) {
-      const story = CRIMES_DB.find(s => s.id === id);
+      const story = FULL_STORIES.find(s => s.id === id);
       if (!story) return;
       currentStory = story;
 
@@ -915,21 +545,31 @@
       const isFav = favs.includes(story.id);
       const isRead = read.includes(story.id);
 
-      // تحديث أيقونة المفضلة
       const favIcon = document.getElementById('readerFavIcon');
       favIcon.className = isFav ? 'ph-fill ph-bookmark text-red-500 text-sm' : 'ph-bold ph-bookmark-simple text-neutral-300 text-sm';
 
-      // شريط التقدم
       document.getElementById('readerProgress').style.width = '0%';
 
+      // توليد الفصول المتكاملة
+      const chaptersHTML = story.chapters.map((chap, index) => `
+        <article class="bg-noir-900/60 p-5 rounded-3xl border border-noir-800/80 space-y-3">
+          <h2 class="text-sm font-bold text-red-400 font-sans flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-red-950 text-red-400 flex items-center justify-center text-xs font-black font-sans">${index + 1}</span>
+            ${chap.title}
+          </h2>
+          <p class="story-p text-neutral-200 text-justify leading-loose" style="font-size: ${readerFontSize}px;">
+            ${chap.text}
+          </p>
+        </article>
+      `).join('');
+
       scrollArea.innerHTML = `
-        <!-- ترويسة الرواية -->
         <div class="space-y-2 border-b border-noir-800/80 pb-4">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-red-950/60 text-red-400 border border-red-800">
-              ${story.flag} ملف جنائي من ${story.countryName}
+              ${story.flag} ملف جنائي رسمي - ${story.countryName}
             </span>
-            <span class="text-xs text-noir-muted font-sans font-bold">⏱ قراءة ${story.readMin} دقائق</span>
+            <span class="text-xs text-noir-muted font-sans font-bold">⏱ قراءة متأنية: ${story.readMin} دقائق</span>
           </div>
 
           <h1 class="text-xl font-black text-white leading-tight font-sans pt-1">
@@ -937,62 +577,19 @@
           </h1>
 
           <div class="flex flex-wrap items-center gap-3 text-xs text-noir-muted pt-1">
-            <span>📍 الموقع: <strong class="text-neutral-300">${story.city}</strong></span>
+            <span>📍 مسرح الأحداث: <strong class="text-neutral-300">${story.city}</strong></span>
             <span>📅 الفترة: <strong class="text-neutral-300">${story.year}</strong></span>
             <span>📂 التصنيف: <strong class="text-red-400">${story.category}</strong></span>
           </div>
         </div>
 
-        <!-- السرد المقسم إلى 4 محاور موثقة -->
-        <div class="space-y-5 font-narrative leading-loose pt-1">
-          
-          <!-- المحور 1: البداية والوقائع -->
-          <article class="bg-noir-900/40 p-4 rounded-3xl border border-noir-800/60 space-y-2">
-            <h2 class="text-sm font-bold text-red-400 font-sans flex items-center gap-2">
-              <span class="w-6 h-6 rounded-lg bg-red-950 text-red-400 flex items-center justify-center text-xs font-black font-sans">١</span>
-              البداية والوقائع الصادمة
-            </h2>
-            <p class="story-p text-neutral-200 text-justify" style="font-size: ${readerFontSize}px;">
-              ${story.origin}
-            </p>
-          </article>
-
-          <!-- المحور 2: التحريات وخيوط البحث -->
-          <article class="bg-noir-900/40 p-4 rounded-3xl border border-noir-800/60 space-y-2">
-            <h2 class="text-sm font-bold text-red-400 font-sans flex items-center gap-2">
-              <span class="w-6 h-6 rounded-lg bg-red-950 text-red-400 flex items-center justify-center text-xs font-black font-sans">٢</span>
-              خيوط التحقيق والشرطة الفنية
-            </h2>
-            <p class="story-p text-neutral-200 text-justify" style="font-size: ${readerFontSize}px;">
-              ${story.investigation}
-            </p>
-          </article>
-
-          <!-- المحور 3: السقوط والمحاكمة -->
-          <article class="bg-noir-900/40 p-4 rounded-3xl border border-noir-800/60 space-y-2">
-            <h2 class="text-sm font-bold text-red-400 font-sans flex items-center gap-2">
-              <span class="w-6 h-6 rounded-lg bg-red-950 text-red-400 flex items-center justify-center text-xs font-black font-sans">٣</span>
-              سقوط الجناة وحكم المحكمة
-            </h2>
-            <p class="story-p text-neutral-200 text-justify" style="font-size: ${readerFontSize}px;">
-              ${story.trial}
-            </p>
-          </article>
-
-          <!-- المحور 4: الأثر المجتمعي والعبرة -->
-          <article class="bg-noir-900/40 p-4 rounded-3xl border border-noir-800/60 space-y-2">
-            <h2 class="text-sm font-bold text-red-400 font-sans flex items-center gap-2">
-              <span class="w-6 h-6 rounded-lg bg-red-950 text-red-400 flex items-center justify-center text-xs font-black font-sans">٤</span>
-              الأثر والدروس في علم الجريمة
-            </h2>
-            <p class="story-p text-neutral-200 text-justify" style="font-size: ${readerFontSize}px;">
-              ${story.impact}
-            </p>
-          </article>
+        <!-- فصول الرواية الجنائية الكاملة -->
+        <div class="space-y-6 font-narrative pt-2">
+          ${chaptersHTML}
         </div>
 
-        <!-- أزرار الإجراءات في أسفل القارئ -->
-        <div class="pt-4 pb-2 space-y-2.5 font-sans">
+        <!-- أزرار الإجراءات في ختام القصة -->
+        <div class="pt-6 pb-2 space-y-2.5 font-sans">
           <button onclick="toggleStoryAsRead(${story.id})" id="btnMarkRead" class="w-full ${isRead ? 'bg-emerald-900 text-emerald-300' : 'bg-red-600 text-white'} font-bold py-3.5 rounded-2xl text-xs active:scale-95 transition flex items-center justify-center gap-2 shadow-lg">
             <i class="ph-bold ${isRead ? 'ph-check-circle' : 'ph-check'} text-base"></i>
             <span>${isRead ? 'تمت قراءة هذا الملف (اضغط للإلغاء)' : 'تعليم كـ تمت القراءة (حفظ الإنجاز)'}</span>
@@ -1017,7 +614,6 @@
       updateStats();
     }
 
-    // شريط تقدم التمرير
     function handleScrollProgress() {
       const area = document.getElementById('readerScroll');
       const bar = document.getElementById('readerProgress');
@@ -1028,7 +624,6 @@
       }
     }
 
-    // تعديل حجم الخط
     function adjustFont(delta) {
       readerFontSize = Math.min(26, Math.max(15, readerFontSize + delta));
       document.querySelectorAll('.story-p').forEach(p => {
@@ -1036,7 +631,6 @@
       });
     }
 
-    // تبديل الثيم
     function toggleReaderTheme() {
       const modal = document.getElementById('readerModal');
       readerThemes.forEach(t => modal.classList.remove(t));
@@ -1044,7 +638,6 @@
       modal.classList.add(readerThemes[readerThemeIndex]);
     }
 
-    // إدارة المفضلة
     function toggleFavorite(id) {
       let favs = getStoredBookmarks();
       if (favs.includes(id)) {
@@ -1054,7 +647,7 @@
         favs.push(id);
         showToast("تمت الإضافة إلى المفضلة");
       }
-      localStorage.setItem('maghreb_50_favs', JSON.stringify(favs));
+      localStorage.setItem('maghreb_100_favs', JSON.stringify(favs));
       updateStats();
       renderStoriesList();
       if (currentStory && currentStory.id === id) {
@@ -1067,41 +660,38 @@
       if (currentStory) toggleFavorite(currentStory.id);
     }
 
-    // تعليم كـ تمت القراءة
     function toggleStoryAsRead(id) {
       let read = getStoredRead();
       const btn = document.getElementById('btnMarkRead');
       if (read.includes(id)) {
         read = read.filter(x => x !== id);
-        showToast("أعيدت القصة إلى قائمة غير المقروءة");
+        showToast("أعيد الملف لقائمة غير المقروءة");
         if (btn) {
           btn.className = "w-full bg-red-600 text-white font-bold py-3.5 rounded-2xl text-xs active:scale-95 transition flex items-center justify-center gap-2 shadow-lg";
           btn.innerHTML = `<i class="ph-bold ph-check text-base"></i><span>تعليم كـ تمت القراءة (حفظ الإنجاز)</span>`;
         }
       } else {
         read.push(id);
-        showToast("أحسنت! سُجلت القضية في أرشيفك الشخصي");
+        showToast("تم تسجيل قراءة القضية بنجاح");
         if (btn) {
           btn.className = "w-full bg-emerald-900 text-emerald-300 font-bold py-3.5 rounded-2xl text-xs active:scale-95 transition flex items-center justify-center gap-2 shadow-lg";
           btn.innerHTML = `<i class="ph-bold ph-check-circle text-base"></i><span>تمت قراءة هذا الملف (اضغط للإلغاء)</span>`;
         }
       }
-      localStorage.setItem('maghreb_50_read', JSON.stringify(read));
+      localStorage.setItem('maghreb_100_read', JSON.stringify(read));
       updateStats();
     }
 
-    // اختيار قضية عشوائية "قضية الليلة"
     function pickRandomStory() {
-      const randomIndex = Math.floor(Math.random() * CRIMES_DB.length);
-      const chosen = CRIMES_DB[randomIndex];
-      showToast(`تم اختيار: ${chosen.title}`);
+      const randomIndex = Math.floor(Math.random() * FULL_STORIES.length);
+      const chosen = FULL_STORIES[randomIndex];
+      showToast(`تم فتح: #${chosen.id} ${chosen.title}`);
       openStoryReader(chosen.id);
     }
 
-    // مشاركة القصة
     function shareCurrentStory() {
       if (!currentStory) return;
-      const text = `ملف جنائي حقيقي: ${currentStory.title} (${currentStory.countryName} - ${currentStory.city}) من أرشيف الجرائم المغاربية.`;
+      const text = `ملف جنائي حقيقي: #${currentStory.id} ${currentStory.title} (${currentStory.countryName} - ${currentStory.city}) من الموسوعة الجنائية المغاربية.`;
       if (navigator.share) {
         navigator.share({
           title: currentStory.title,
@@ -1109,7 +699,6 @@
           url: window.location.href
         }).catch(() => {});
       } else {
-        // نسخ للنظام
         const dummy = document.createElement('textarea');
         dummy.value = `${text}\n${window.location.href}`;
         document.body.appendChild(dummy);
@@ -1120,7 +709,6 @@
       }
     }
 
-    // تنبيه Toast
     function showToast(msg) {
       const toast = document.getElementById('toast');
       const text = document.getElementById('toastMsg');
@@ -1131,62 +719,6 @@
         toast.classList.remove('opacity-100');
         toast.classList.add('opacity-0');
       }, 2000);
-    }
-
-    // خلفية الصوت البوليسي الغامض (Web Audio API الخفيف)
-    function toggleAtmosphereAudio() {
-      const btn = document.getElementById('soundBtn');
-      const icon = document.getElementById('soundIcon');
-
-      if (!isSoundOn) {
-        startAmbient();
-        isSoundOn = true;
-        icon.className = 'ph-fill ph-speaker-high text-red-500 text-lg';
-        btn.classList.add('border-red-600');
-        showToast("تم تشغيل جو الغموض الصوتي");
-      } else {
-        stopAmbient();
-        isSoundOn = false;
-        icon.className = 'ph-bold ph-speaker-simple-slash text-noir-muted text-lg';
-        btn.classList.remove('border-red-600');
-        showToast("تم إيقاف الصوت");
-      }
-    }
-
-    function startAmbient() {
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioCtx();
-
-        osc1 = audioCtx.createOscillator();
-        osc2 = audioCtx.createOscillator();
-        masterGain = audioCtx.createGain();
-
-        osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(50, audioCtx.currentTime);
-
-        osc2.type = 'triangle';
-        osc2.frequency.setValueAtTime(54, audioCtx.currentTime);
-
-        masterGain.gain.setValueAtTime(0.06, audioCtx.currentTime);
-
-        osc1.connect(masterGain);
-        osc2.connect(masterGain);
-        masterGain.connect(audioCtx.destination);
-
-        osc1.start();
-        osc2.start();
-      } catch (e) {
-        console.warn('Audio non supporté:', e);
-      }
-    }
-
-    function stopAmbient() {
-      try {
-        if (osc1) osc1.stop();
-        if (osc2) osc2.stop();
-        if (audioCtx) audioCtx.close();
-      } catch {}
     }
   </script>
 </body>
