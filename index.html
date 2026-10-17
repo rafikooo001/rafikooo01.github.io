@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>PassCivique - Examen Civique & Entretien</title>
+  
+  <!-- Apple Web App Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PassCivique">
+  <meta name="theme-color" content="#0055A5">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+  <!-- Configuration Tailwind -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            ios: {
+              blue: '#007AFF',
+              red: '#FF3B30',
+              green: '#34C759',
+              yellow: '#FFCC00',
+              purple: '#AF52DE',
+              cardLight: '#FFFFFF',
+              cardDark: '#1C1C1E',
+              bgLight: '#F2F2F7',
+              bgDark: '#000000',
+              borderLight: '#E5E5EA',
+              borderDark: '#2C2C2E',
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Support iOS Safe Area Spacing */
+    :root {
+      --sat: env(safe-area-inset-top, 20px);
+      --sab: env(safe-area-inset-bottom, 20px);
+    }
+    body {
+      padding-top: var(--sat);
+      padding-bottom: var(--sab);
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .safe-bottom-padding {
+      padding-bottom: calc(var(--sab) + 70px);
+    }
+    /* Masquer la barre de défilement tout en permettant le scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .glassmorphism {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+  </style>
+</head>
+<body class="bg-ios-bgLight dark:bg-ios-bgDark text-neutral-900 dark:text-neutral-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
+
+  <!-- ================= EN-TÊTE HAUT (iOS Style) ================= -->
+  <header class="sticky top-0 z-40 bg-ios-bgLight/80 dark:bg-ios-bgDark/80 glassmorphism border-b border-ios-borderLight dark:border-ios-borderDark px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center space-x-2">
+      <div class="flex space-x-1">
+        <span class="w-2.5 h-6 rounded-full bg-[#002654]"></span>
+        <span class="w-2.5 h-6 rounded-full bg-white border border-neutral-300 dark:border-neutral-700"></span>
+        <span class="w-2.5 h-6 rounded-full bg-[#CE1126]"></span>
+      </div>
+      <div>
+        <h1 class="text-lg font-bold tracking-tight">PassCivique</h1>
+        <p class="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium">Révision Examen & Entretien</p>
+      </div>
+    </div>
+    
+    <div class="flex items-center space-x-2">
+      <!-- Bouton Mode Nuit -->
+      <button id="themeToggleBtn" aria-label="Basculer le thème" class="w-9 h-9 rounded-full bg-neutral-200 dark:bg-neutral-800 flex items-center justify-center text-neutral-700 dark:text-neutral-200 active:scale-95 transition">
+        <i id="themeIcon" class="ph-bold ph-moon text-lg"></i>
+      </button>
+      
+      <!-- Statut Réseau / Offline -->
+      <span class="px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 rounded-full flex items-center space-x-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Hors-ligne</span>
+      </span>
+    </div>
+  </header>
+
+  <!-- ================= CONTENEUR PRINCIPAL D'ONGLETS ================= -->
+  <main id="appContainer" class="flex-1 overflow-y-auto px-4 pt-3 safe-bottom-padding no-scrollbar">
+
+    <!-- 1. ONGLET : ACCUEIL & TABLEAU DE BORD -->
+    <section id="tab-home" class="tab-content space-y-4">
+      <!-- Bannière Présentation -->
+      <div class="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white rounded-3xl p-5 shadow-lg relative overflow-hidden">
+        <div class="absolute -right-6 -bottom-6 opacity-15 pointer-events-none text-9xl">
+          <i class="ph-bold ph-certificate"></i>
+        </div>
+        <div class="relative z-10">
+          <span class="inline-block px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/20 backdrop-blur-md mb-2">
+            Livret du Citoyen • Épreuve Officielle
+          </span>
+          <h2 class="text-2xl font-black tracking-tight leading-tight mb-1">Objectif 100% de Réussite</h2>
+          <p class="text-blue-100 text-xs mb-4">Entraînez-vous selon le barème officiel (20 questions • seuil requis : 12/20).</p>
+          
+          <button onclick="startExam(20)" class="w-full bg-white text-blue-700 font-bold py-3.5 px-4 rounded-2xl flex items-center justify-center space-x-2 shadow-md active:scale-[0.98] transition">
+            <i class="ph-bold ph-play-circle text-xl"></i>
+            <span>Lancer un Examen Blanc</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Statistiques d'un coup d'œil -->
+      <div class="grid grid-cols-3 gap-2.5">
+        <div class="bg-ios-cardLight dark:bg-ios-cardDark p-3 rounded-2xl border border-ios-borderLight dark:border-ios-borderDark shadow-sm text-center">
+          <span class="text-xs text-neutral-500 dark:text-neutral-400">Tests faits</span>
+          <p id="statTotalExams" class="text-xl font-bold mt-0.5 text-blue-600 dark:text-blue-400">0</p>
+        </div>
+        <div class="bg-ios-cardLight dark:bg-ios-cardDark p-3 rounded-2xl border border-ios-borderLight dark:border-ios-borderDark shadow-sm text-center">
+          <span class="text-xs text-neutral-500 dark:text-neutral-400">Moyenne</span>
+          <p id="statAvgScore" class="text-xl font-bold mt-0.5 text-emerald-600 dark:text-emerald-400">--/20</p>
+        </div>
+        <div class="bg-ios-cardLight dark:bg-ios-cardDark p-3 rounded-2xl border border-ios-borderLight dark:border-ios-borderDark shadow-sm text-center">
+          <span class="text-xs text-neutral-500 dark:text-neutral-400">Taux succès</span>
+          <p id="statSuccessRate" class="text-xl font-bold mt-0.5 text-purple-600 dark:text-purple-400">--%</p>
+        </div>
+      </div>
+
+      <!-- Guide d'installation sur iPhone (PWA) -->
+      <div class="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 rounded-2xl p-3.5 flex items-start space-x-3 text-xs text-amber-900 dark:text-amber-200">
+        <i class="ph-fill ph-device-mobile-camera text-2xl flex-shrink-0 text-amber-600 dark:text-amber-400"></i>
+        <div>
+          <span class="font-bold">Pour l'installer comme une vraie application :</span>
+          <p class="mt-0.5 text-neutral-600 dark:text-neutral-300">Touchez l'icône <strong class="underline">Partager</strong> de Safari (carré avec la flèche vers le haut), puis sélectionnez <strong class="underline">« Sur l'écran d'accueil »</strong>.</p>
+        </div>
+      </div>
+
+      <!-- Accès Rapide par Thématique -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Entraînement Ciblé</h3>
+          <button onclick="switchTab('themes')" class="text-xs font-semibold text-ios-blue">Voir tout</button>
+        </div>
+        <div class="grid grid-cols-2 gap-2.5" id="homeThemesGrid">
+          <!-- Injecté dynamiquement par JS -->
+        </div>
+      </div>
+
+      <!-- Historique Récent -->
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-2">Derniers Essais</h3>
+        <div id="recentHistoryList" class="space-y-2">
+          <p class="text-xs text-neutral-400 italic text-center py-4 bg-ios-cardLight dark:bg-ios-cardDark rounded-2xl border border-ios-borderLight dark:border-ios-borderDark">Aucun examen passé pour le moment. Lancez votre premier test !</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ONGLET : THÈMES D'ENTRAÎNEMENT -->
+    <section id="tab-themes" class="tab-content hidden space-y-4">
+      <div>
+        <h2 class="text-xl font-bold">Thématiques Officielles</h2>
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">Sélectionnez une catégorie pour vous entraîner sans chronomètre.</p>
+      </div>
+
+      <div class="space-y-3" id="themesFullList">
+        <!-- Rempli par JavaScript -->
+      </div>
+    </section>
+
+    <!-- 3. ONGLET : FICHES MÉMO / ANTISÈCHE -->
+    <section id="tab-flashcards" class="tab-content hidden space-y-4">
+      <div>
+        <h2 class="text-xl font-bold">Fiches de Révision</h2>
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">L'essentiel à retenir pour le test écrit et l'entretien.</p>
+      </div>
+
+      <!-- Barre de recherche -->
+      <div class="relative">
+        <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400 text-lg"></i>
+        <input type="text" id="memoSearchInput" placeholder="Rechercher une date, une valeur, un article..." 
+               class="w-full bg-ios-cardLight dark:bg-ios-cardDark border border-ios-borderLight dark:border-ios-borderDark rounded-2xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ios-blue text-neutral-900 dark:text-neutral-100">
+      </div>
+
+      <!-- Filtres rapides -->
+      <div class="flex space-x-2 overflow-x-auto no-scrollbar pb-1 text-xs">
+        <button onclick="filterMemos('all')" class="memo-filter-btn px-3 py-1.5 rounded-full bg-ios-blue text-white font-medium whitespace-nowrap active:scale-95 transition">Toutes</button>
+        <button onclick="filterMemos('valeurs')" class="memo-filter-btn px-3 py-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium whitespace-nowrap active:scale-95 transition">Valeurs & Laïcité</button>
+        <button onclick="filterMemos('institutions')" class="memo-filter-btn px-3 py-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium whitespace-nowrap active:scale-95 transition">Institutions</button>
+        <button onclick="filterMemos('histoire')" class="memo-filter-btn px-3 py-1.5 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 font-medium whitespace-nowrap active:scale-95 transition">Dates Clés</button>
+      </div>
+
+      <!-- Conteneur des fiches mémo -->
+      <div id="memosContainer" class="space-y-3">
+        <!-- Rempli par JavaScript -->
+      </div>
+    </section>
+
+    <!-- 4. ONGLET : ENTRETIEN PRÉFECTURE -->
+    <section id="tab-interview" class="tab-content hidden space-y-4">
+      <div>
+        <h2 class="text-xl font-bold">L'Entretien Préfecture</h2>
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">Questions orales décisives, motivations et pièges à éviter.</p>
+      </div>
+
+      <div class="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 rounded-2xl p-4 text-xs text-blue-900 dark:text-blue-200">
+        <div class="flex items-center space-x-2 font-bold mb-1">
+          <i class="ph-bold ph-lightbulb text-base text-blue-600 dark:text-blue-400"></i>
+          <span>Règle d'or pour l'agent de préfecture :</span>
+        </div>
+        <p>L'instructeur évalue votre <strong>adhésion sincère aux valeurs républicaines</strong>, votre niveau de français parlé et la pérennité de votre projet de vie en France. Répondez calmement et avec des exemples concrets de votre quotidien.</p>
+      </div>
+
+      <div id="interviewQuestionsContainer" class="space-y-3">
+        <!-- Rempli par JavaScript -->
+      </div>
+    </section>
+
+    <!-- 5. VUE MODALE : QUIZ / EXAMEN ACTIF (Plein Écran) -->
+    <section id="quizScreen" class="fixed inset-0 z-50 bg-ios-bgLight dark:bg-ios-bgDark flex flex-col hidden">
+      <!-- En-tête du Quiz -->
+      <div class="px-4 py-3 bg-ios-cardLight/90 dark:bg-ios-cardDark/90 glassmorphism border-b border-ios-borderLight dark:border-ios-borderDark flex items-center justify-between" style="padding-top: max(12px, env(safe-area-inset-top));">
+        <button onclick="confirmExitQuiz()" class="text-ios-blue text-sm font-semibold flex items-center space-x-1">
+          <i class="ph-bold ph-caret-left"></i>
+          <span>Quitter</span>
+        </button>
+        
+        <!-- Compteur & Chrono -->
+        <div class="flex items-center space-x-3">
+          <div id="quizTimerBadge" class="flex items-center space-x-1 px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 font-mono text-xs font-bold">
+            <i class="ph-bold ph-clock"></i>
+            <span id="quizTimerText">15:00</span>
+          </div>
+          <span id="quizCounterText" class="text-xs font-bold text-neutral-500">1 / 20</span>
+        </div>
+      </div>
+
+      <!-- Barre de progression -->
+      <div class="w-full bg-neutral-200 dark:bg-neutral-800 h-1.5">
+        <div id="quizProgressBar" class="h-1.5 bg-ios-blue transition-all duration-300" style="width: 5%;"></div>
+      </div>
+
+      <!-- Corps de la question -->
+      <div class="flex-1 overflow-y-auto px-4 py-4 space-y-4 no-scrollbar">
+        <!-- Tag Catégorie -->
+        <div>
+          <span id="quizCategoryBadge" class="text-[11px] font-bold px-2.5 py-1 rounded-md bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 uppercase tracking-wide">
+            Valeurs
+          </span>
+        </div>
+
+        <!-- Énoncé de la question -->
+        <div class="bg-ios-cardLight dark:bg-ios-cardDark p-5 rounded-3xl border border-ios-borderLight dark:border-ios-borderDark shadow-sm">
+          <h3 id="quizQuestionText" class="text-lg font-bold leading-snug">
+            Quelle est la devise de la République française ?
+          </h3>
+        </div>
+
+        <!-- Options de réponse -->
+        <div id="quizOptionsContainer" class="space-y-2.5">
+          <!-- Boutons générés en JS -->
+        </div>
+
+        <!-- Explication détaillée (après validation) -->
+        <div id="quizExplanationBox" class="hidden p-4 rounded-2xl bg-neutral-100 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 text-xs space-y-1.5 transition-all">
+          <div class="flex items-center space-x-1.5 font-bold text-neutral-800 dark:text-neutral-200">
+            <i class="ph-fill ph-info text-blue-500 text-sm"></i>
+            <span>Explication officielle :</span>
+          </div>
+          <p id="quizExplanationText" class="text-neutral-600 dark:text-neutral-300 leading-relaxed"></p>
+        </div>
+      </div>
+
+      <!-- Bas de page : Bouton Suivant -->
+      <div class="p-4 bg-ios-cardLight dark:bg-ios-cardDark border-t border-ios-borderLight dark:border-ios-borderDark" style="padding-bottom: max(16px, env(safe-area-inset-bottom));">
+        <button id="quizNextBtn" onclick="nextQuestion()" disabled class="w-full bg-neutral-300 dark:bg-neutral-800 text-neutral-500 py-3.5 px-4 rounded-2xl font-bold flex items-center justify-center space-x-2 transition">
+          <span>Question suivante</span>
+          <i class="ph-bold ph-arrow-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- 6. VUE MODALE : RÉSULTAT DU QUIZ -->
+    <section id="resultScreen" class="fixed inset-0 z-50 bg-ios-bgLight dark:bg-ios-bgDark flex flex-col hidden overflow-y-auto">
+      <div class="flex-1 px-4 py-8 max-w-md mx-auto w-full flex flex-col justify-center items-center text-center space-y-5" style="padding-top: max(32px, env(safe-area-inset-top)); padding-bottom: max(24px, env(safe-area-inset-bottom));">
+        
+        <!-- Badge Victoire ou Échec -->
+        <div id="resultIconWrapper" class="w-24 h-24 rounded-full flex items-center justify-center text-5xl shadow-xl">
+          <!-- Icône dynamique -->
+        </div>
+
+        <div>
+          <h2 id="resultTitle" class="text-2xl font-black">Résultat</h2>
+          <p id="resultSubtitle" class="text-xs text-neutral-500 dark:text-neutral-400 mt-1"></p>
+        </div>
+
+        <!-- Note géante -->
+        <div class="bg-ios-cardLight dark:bg-ios-cardDark border border-ios-borderLight dark:border-ios-borderDark w-full rounded-3xl p-5 shadow-sm space-y-3">
+          <div class="flex justify-around items-center">
+            <div>
+              <span class="text-xs text-neutral-400 uppercase font-semibold">Votre Note</span>
+              <p id="resultScore" class="text-4xl font-black text-ios-blue">18/20</p>
+            </div>
+            <div class="h-10 w-px bg-neutral-200 dark:bg-neutral-700"></div>
+            <div>
+              <span class="text-xs text-neutral-400 uppercase font-semibold">Statut</span>
+              <p id="resultStatus" class="text-lg font-bold text-emerald-600">ADMIS</p>
+            </div>
+          </div>
+          <p id="resultFeedback" class="text-xs text-neutral-600 dark:text-neutral-300 border-t border-ios-borderLight dark:border-ios-borderDark pt-3"></p>
+        </div>
+
+        <!-- Actions -->
+        <div class="w-full space-y-2 pt-2">
+          <button onclick="restartCurrentQuiz()" class="w-full bg-ios-blue text-white font-bold py-3.5 rounded-2xl shadow active:scale-[0.98] transition">
+            Recommencer le test
+          </button>
+          <button onclick="closeResultScreen()" class="w-full bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-bold py-3.5 rounded-2xl active:scale-[0.98] transition">
+            Retourner au menu
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= BARRE D'ONGLETS BASSE (iOS TAB BAR) ================= -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 bg-ios-cardLight/85 dark:bg-ios-cardDark/85 glassmorphism border-t border-ios-borderLight dark:border-ios-borderDark px-2 py-1.5 flex justify-around items-center" style="padding-bottom: max(6px, env(safe-area-inset-bottom));">
+    <button onclick="switchTab('home')" class="tab-btn active flex-1 flex flex-col items-center py-1 text-ios-blue transition">
+      <i class="ph-fill ph-house text-2xl"></i>
+      <span class="text-[10px] font-semibold mt-0.5">Accueil</span>
+    </button>
+    
+    <button onclick="switchTab('themes')" class="tab-btn flex-1 flex flex-col items-center py-1 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 transition">
+      <i class="ph-bold ph-stack text-2xl"></i>
+      <span class="text-[10px] font-semibold mt-0.5">Thèmes</span>
+    </button>
+    
+    <button onclick="switchTab('flashcards')" class="tab-btn flex-1 flex flex-col items-center py-1 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 transition">
+      <i class="ph-bold ph-book-open-text text-2xl"></i>
+      <span class="text-[10px] font-semibold mt-0.5">Fiches</span>
+    </button>
+    
+    <button onclick="switchTab('interview')" class="tab-btn flex-1 flex flex-col items-center py-1 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 transition">
+      <i class="ph-bold ph-chats-circle text-2xl"></i>
+      <span class="text-[10px] font-semibold mt-0.5">Entretien</span>
+    </button>
+  </nav>
+
+  <!-- ================= SCRIPT & BASE DE DONNÉES COMPLÈTE ================= -->
+  <script>
+    // --- 1. BANQUE OFFICIELLE DE QUESTIONS (LIVRET DU CITOYEN) ---
+    const QUESTIONS_DB = [
+      // 1. Principes, Valeurs & Symboles
+      {
+        id: 1,
+        theme: "valeurs",
+        category: "Principes & Symboles",
+        question: "Quelle est la devise officielle de la République française ?",
+        options: [
+          "Liberté, Égalité, Fraternité",
+          "Honneur, Patrie, Travail",
+          "Unité, Solidarité, Progrès",
+          "Justice, Paix, Liberté"
+        ],
+        answer: 0,
+        explanation: "La devise républicaine 'Liberté, Égalité, Fraternité' trouve ses origines dans la Révolution française et est inscrite dans la Constitution de 1958."
+      },
+      {
+        id: 2,
+        theme: "valeurs",
+        category: "Principes & Symboles",
+        question: "Qu'est-ce que le principe de laïcité en France ?",
+        options: [
+          "L'interdiction de toute pratique religieuse",
+          "La séparation des Églises et de l'État, garantissant la liberté de conscience",
+          "L'obligation de choisir une religion d'État",
+          "Une règle réservée uniquement aux écoles privées"
+        ],
+        answer: 1,
+        explanation: "Instaurée par la loi du 9 décembre 1905, la laïcité sépare les religions de l'État : ce dernier garantit la liberté de culte tout en restant parfaitement neutre."
+      },
+      {
+        id: 3,
+        theme: "valeurs",
+        category: "Principes & Symboles",
+        question: "Quel est l'hymne national français ?",
+        options: [
+          "Le Chant des Partisans",
+          "L'Ode à la Joie",
+          "La Marseillaise",
+          "Le Temps des Cerises"
+        ],
+        answer: 2,
+        explanation: "Écrite par Rouget de Lisle en 1792, La Marseillaise a été déclarée hymne national officiel sous la IIIe République en 1879."
+      },
+      {
+        id: 4,
+        theme: "valeurs",
+        category: "Principes & Symboles",
+        question: "Que représente Marianne ?",
+        options: [
+          "La première présidente de la République",
+          "La figure allégorique de la République française et de la liberté",
+          "Une héroïne de la Première Guerre mondiale",
+          "La déesse romaine de la justice"
+        ],
+        answer: 1,
+        explanation: "Marianne incarne la République française. Son buste est obligatoirement présent dans toutes les mairies de France et sur les timbres-poste."
+      },
+      {
+        id: 5,
+        theme: "valeurs",
+        category: "Principes & Symboles",
+        question: "Quelle est la langue officielle de la République selon la Constitution ?",
+        options: [
+          "Le français et l'anglais",
+          "Le français uniquement",
+          "Le français et les langues régionales",
+          "L'espéranto"
+        ],
+        answer: 1,
+        explanation: "L'article 2 de la Constitution de la Ve République stipule clairement que 'La langue de la République est le français'."
+      },
+
+      // 2. Institutions & Système Politique
+      {
+        id: 6,
+        theme: "institutions",
+        category: "Institutions & Politique",
+        question: "Quel est le régime politique actuel de la France ?",
+        options: [
+          "Une monarchie constitutionnelle",
+          "La Ve République (régime semi-présidentiel)",
+          "Un régime fédéral",
+          "La IVe République"
+        ],
+        answer: 1,
+        explanation: "La Ve République a été fondée en 1958 sous l'impulsion du général Charles de Gaulle pour assurer la stabilité du pouvoir exécutif."
+      },
+      {
+        id: 7,
+        theme: "institutions",
+        category: "Institutions & Politique",
+        question: "Quelle est la durée du mandat du Président de la République ?",
+        options: ["7 ans", "4 ans", "5 ans (quinquennat)", "6 ans"],
+        answer: 2,
+        explanation: "Depuis la réforme constitutionnelle de 2000 (appliquée en 2002), le mandat présidentiel est de 5 ans, renouvelable une seule fois consécutivement."
+      },
+      {
+        id: 8,
+        theme: "institutions",
+        category: "Institutions & Politique",
+        question: "De quoi est composé le Parlement français ?",
+        options: [
+          "Du Conseil constitutionnel et de la Cour de cassation",
+          "De l'Assemblée nationale et du Sénat",
+          "Des maires et des députés",
+          "Du Conseil d'État et des ministères"
+        ],
+        answer: 1,
+        explanation: "Le Parlement est bicaméral : il réunit l'Assemblée nationale (Palais Bourbon) et le Sénat (Palais du Luxembourg) pour débattre et voter les lois."
+      },
+      {
+        id: 9,
+        theme: "institutions",
+        category: "Institutions & Politique",
+        question: "Qui nomme le Premier ministre en France ?",
+        options: [
+          "Le président du Sénat",
+          "Le peuple au suffrage universel direct",
+          "Le Président de la République",
+          "Les députés de l'Assemblée nationale"
+        ],
+        answer: 2,
+        explanation: "Selon l'article 8 de la Constitution, le Président de la République nomme le Premier ministre, traditionnellement issu de la majorité parlementaire."
+      },
+      {
+        id: 10,
+        theme: "institutions",
+        category: "Institutions & Politique",
+        question: "Où réside officiellement le Président de la République ?",
+        options: [
+          "Au Palais du Luxembourg",
+          "À l'Hôtel de Matignon",
+          "Au Palais de l'Élysée",
+          "Au Château de Versailles"
+        ],
+        answer: 2,
+        explanation: "L'Élysée est la résidence officielle du chef de l'État, tandis que Matignon est celle du Premier ministre."
+      },
+      {
+        id: 11,
+        theme: "institutions",
+        category: "Institutions & Politique",
+        question: "Combien d'États membres compte l'Union Européenne actuellement ?",
+        options: ["25", "27", "28", "30"],
+        answer: 1,
+        explanation: "L'Union européenne compte 27 pays membres depuis la sortie effective du Royaume-Uni (Brexit) le 31 janvier 2020."
+      },
+
+      // 3. Droits & Devoirs des Citoyens
+      {
+        id: 12,
+        theme: "droits",
+        category: "Droits & Devoirs",
+        question: "À quel âge a-t-on le droit de vote en France ?",
+        options: ["16 ans", "18 ans", "21 ans", "20 ans"],
+        answer: 1,
+        explanation: "La majorité civile et politique est fixée à 18 ans révolus depuis la loi promulguée par Valéry Giscard d'Estaing en 1974."
+      },
+      {
+        id: 13,
+        theme: "droits",
+        category: "Droits & Devoirs",
+        question: "Parmi ces propositions, laquelle constitue un devoir civique obligatoire ?",
+        options: [
+          "Faire partie d'un parti politique",
+          "Respecter les lois et payer ses impôts",
+          "Adhérer à un syndicat",
+          "Effectuer un service militaire de 2 ans"
+        ],
+        answer: 1,
+        explanation: "Tout citoyen et résident sur le sol français a l'obligation de respecter les lois, de respecter les droits d'autrui et de contribuer aux charges publiques (impôts)."
+      },
+      {
+        id: 14,
+        theme: "droits",
+        category: "Droits & Devoirs",
+        question: "La liberté d'expression en France autorise-t-elle les propos racistes ou discriminatoires ?",
+        options: [
+          "Oui, car la liberté d'expression n'a aucune limite",
+          "Non, le racisme et les discriminations constituent des délits punis par la loi",
+          "Oui, uniquement sur les réseaux sociaux",
+          "Oui, sous couvert d'anonymat"
+        ],
+        answer: 1,
+        explanation: "En droit français, la liberté d'expression est fondamentale mais encadrée : le racisme, l'antisémitisme, l'homophobie et les appels à la haine ne sont pas des opinions, mais des délits pénaux."
+      },
+      {
+        id: 15,
+        theme: "droits",
+        category: "Droits & Devoirs",
+        question: "Pour être reconnu légalement en France, où doit être célébré le mariage ?",
+        options: [
+          "Dans un lieu de culte (église, mosquée, synagogue)",
+          "Devant un officier d'état civil à la Mairie",
+          "Devant un notaire uniquement",
+          "Dans un commissariat de police"
+        ],
+        answer: 1,
+        explanation: "Seul le mariage républicain (civil) célébré en mairie a une valeur juridique légale en France. Tout mariage religieux doit obligatoirement être précédé du mariage civil."
+      },
+
+      // 4. Histoire & Repères Clés
+      {
+        id: 16,
+        theme: "histoire",
+        category: "Histoire de France",
+        question: "En quelle année s'est déroulée la prise de la Bastille ?",
+        options: ["1789", "1804", "1848", "1914"],
+        answer: 0,
+        explanation: "Le 14 juillet 1789 marque la prise de la forteresse royale de la Bastille par le peuple parisien, événement emblématique de la Révolution française."
+      },
+      {
+        id: 17,
+        theme: "histoire",
+        category: "Histoire de France",
+        question: "En quelle année l'esclavage a-t-il été définitivement aboli en France ?",
+        options: ["1789", "1848", "1905", "1944"],
+        answer: 1,
+        explanation: "L'abolition définitive de l'esclavage a été promulguée en 1848 sous la IIe République, portée par Victor Schœlcher."
+      },
+      {
+        id: 18,
+        theme: "histoire",
+        category: "Histoire de France",
+        question: "En quelle année les femmes ont-elles obtenu le droit de vote en France ?",
+        options: ["1789", "1918", "1944", "1968"],
+        answer: 2,
+        explanation: "Le droit de vote a été accordé aux femmes par une ordonnance du Comité français de libération nationale signée par le général de Gaulle le 21 avril 1944."
+      },
+      {
+        id: 19,
+        theme: "histoire",
+        category: "Histoire de France",
+        question: "Que commémore-t-on le 8 mai en France ?",
+        options: [
+          "L'armistice de la Première Guerre mondiale",
+          "La victoire des Alliés et la capitulation de l'Allemagne nazie en 1945",
+          "La fête du travail",
+          "La Déclaration des droits de l'homme"
+        ],
+        answer: 1,
+        explanation: "Le 8 mai commémore la fin de la Seconde Guerre mondiale en Europe en 1945. L'armistice de 1918 est quant à lui commémoré le 11 novembre."
+      },
+      {
+        id: 20,
+        theme: "histoire",
+        category: "Histoire de France",
+        question: "Qui était le chef de la France Libre pendant la Seconde Guerre mondiale ?",
+        options: ["Jean Jaurès", "Charles de Gaulle", "Georges Clemenceau", "Philippe Pétain"],
+        answer: 1,
+        explanation: "Depuis Londres, le général Charles de Gaulle a lancé l'Appel du 18 juin 1940 et organisé la résistance militaire et civile française contre l'occupant nazi."
+      },
+
+      // 5. Géographie & Société
+      {
+        id: 21,
+        theme: "geo",
+        category: "Géographie & Culture",
+        question: "Quel est le plus long fleuve qui coule entièrement en France ?",
+        options: ["La Seine", "Le Rhône", "La Loire", "La Garonne"],
+        answer: 2,
+        explanation: "La Loire est le plus long fleuve de France métropolitaine, s'étirant sur environ 1 006 kilomètres depuis l'Ardèche jusqu'à l'océan Atlantique."
+      },
+      {
+        id: 22,
+        theme: "geo",
+        category: "Géographie & Culture",
+        question: "Quel massif montagneux forme la frontière naturelle entre la France et l'Espagne ?",
+        options: ["Les Alpes", "Le Massif Central", "Les Pyrénées", "Le Jura"],
+        answer: 2,
+        explanation: "Les Pyrénées séparent la France et l'Espagne. Les Alpes forment la frontière avec l'Italie et la Suisse."
+      },
+      {
+        id: 23,
+        theme: "geo",
+        category: "Géographie & Culture",
+        question: "Quel est le point culminant de la France et de l'Europe occidentale ?",
+        options: ["Le Pic du Midi", "Le Mont Blanc", "Le Puy de Dôme", "La Meije"],
+        answer: 1,
+        explanation: "Le Mont Blanc culmine à plus de 4 800 mètres d'altitude dans les Alpes, à la frontière franco-italienne."
+      },
+      {
+        id: 24,
+        theme: "geo",
+        category: "Géographie & Culture",
+        question: "Citez une scientifique française ayant reçu deux prix Nobel :",
+        options: ["Simone Veil", "Marie Curie", "George Sand", "Olympe de Gouges"],
+        answer: 1,
+        explanation: "Marie Curie a obtenu le prix Nobel de physique (1903) et le prix Nobel de chimie (1911) pour ses travaux majeurs sur la radioactivité."
+      }
+    ];
+
+    // --- 2. THÉMATIQUES OFFICIELLES ---
+    const THEMES = [
+      { id: "valeurs", title: "Valeurs & Symboles", icon: "ph-flag", desc: "Devise, Marianne, drapeau, laïcité", color: "from-blue-500 to-indigo-600" },
+      { id: "institutions", title: "Institutions & Lois", icon: "ph-buildings", desc: "Président, Parlement, Justice, UE", color: "from-emerald-500 to-teal-700" },
+      { id: "droits", title: "Droits & Devoirs", icon: "ph-scales", desc: "Vote, impôts, libertés publiques", color: "from-amber-500 to-orange-600" },
+      { id: "histoire", title: "Dates & Histoire", icon: "ph-hourglass-high", desc: "1789, 1848, guerres, résistances", color: "from-rose-500 to-red-700" },
+      { id: "geo", title: "Géographie & Culture", icon: "ph-compass", desc: "Fleuves, massifs, patrimoine", color: "from-purple-500 to-violet-700" }
+    ];
+
+    // --- 3. FICHES MÉMO RÉSUMÉES ---
+    const MEMO_CARDS = [
+      {
+        category: "valeurs",
+        title: "La Laïcité (Loi de 1905)",
+        badge: "Fondamental",
+        content: "L'État ne reconnaît, ne salarie ni ne subventionne aucun culte. Il garantit la liberté absolue de conscience (croire ou ne pas croire) et la neutralité des agents des services publics."
+      },
+      {
+        category: "valeurs",
+        title: "La Devise Républicaine",
+        badge: "Article 2",
+        content: "• Liberté : faire tout ce qui ne nuit pas à autrui.<br>• Égalité : mêmes droits et devoirs pour tous sans distinction d'origine ou de sexe.<br>• Fraternité : solidarité et respect mutuel entre citoyens."
+      },
+      {
+        category: "institutions",
+        title: "La Séparation des Trois Pouvoirs",
+        badge: "Démocratie",
+        content: "• <strong>Exécutif :</strong> Président de la République + Premier ministre et ministres.<br>• <strong>Législatif :</strong> Parlement (Assemblée nationale + Sénat) qui vote les lois.<br>• <strong>Judiciaire :</strong> Magistrats et juges indépendants."
+      },
+      {
+        category: "institutions",
+        title: "Le Quinquennat Présidentiel",
+        badge: "Élection",
+        content: "Le chef de l'État est élu pour 5 ans au suffrage universel direct au scrutin uninominal majoritaire à deux tours. Il est le chef des armées et garant de la Constitution."
+      },
+      {
+        category: "histoire",
+        title: "Dates Clés Indispensables",
+        badge: "Chronologie",
+        content: "• <strong>1789 :</strong> Déclaration des droits de l'homme et du citoyen.<br>• <strong>1848 :</strong> Abolition de l'esclavage & suffrage universel masculin.<br>• <strong>1905 :</strong> Loi de séparation des Églises et de l'État.<br>• <strong>1944 :</strong> Droit de vote accordé aux femmes.<br>• <strong>1958 :</strong> Début de la Ve République."
+      },
+      {
+        category: "histoire",
+        title: "Les Grands Hommes et Femmes",
+        badge: "Panthéon",
+        content: "• <strong>Victor Hugo :</strong> Écrivain engagé et député républicain.<br>• <strong>Jean Moulin :</strong> Héros unificateur de la Résistance intérieure.<br>• <strong>Simone Veil :</strong> Rescapée de la Shoah, ministre de la santé, présidente du Parlement européen.<br>• <strong>Marie Curie :</strong> Double prix Nobel, pionnière en physique et chimie."
+      }
+    ];
+
+    // --- 4. QUESTIONS CLÉS D'ENTRETIEN PRÉFECTURE ---
+    const INTERVIEW_PREP = [
+      {
+        q: "Pourquoi voulez-vous devenir français ?",
+        tip: "C'est la question centrale ! Évitez les réponses uniquement pratiques (comme 'pour voyager plus facilement'). Exprimez votre attachement sincère au modèle de société français.",
+        sample: "« La France est mon pays d'adoption depuis plusieurs années. J'y travaille, j'y paie mes impôts et j'y ai bâti mes repères. Acquérir la nationalité est la concrétisation naturelle de mon intégration : je veux participer pleinement à la démocratie par le droit de vote et transmettre les valeurs de la République à ma famille. »"
+      },
+      {
+        q: "Que représente la Laïcité pour vous dans la vie de tous les jours ?",
+        tip: "Montrez que vous comprenez que la laïcité protège la liberté de chacun et n'est pas une hostilité aux croyances.",
+        sample: "« Pour moi, la laïcité est un bouclier de liberté et de paix. Elle permet à des personnes de confessions différentes ou athées de vivre ensemble avec les mêmes droits, tout en assurant la stricte neutralité de l'école et des services publics. »"
+      },
+      {
+        q: "Faites-vous partie d'une association ?",
+        tip: "Une implication dans la vie locale (club de sport, association de quartier, parents d'élèves) valorise énormément votre dossier.",
+        sample: "« Oui, je suis engagé(e) dans l'association sportive de ma commune / j'aide régulièrement lors des événements scolaires de mes enfants, ce qui me permet d'échanger avec mes voisins et de m'investir localement. »"
+      },
+      {
+        q: "Quels sont les devoirs d'un citoyen selon vous ?",
+        tip: "Citez le respect de la légalité, la solidarité fiscale et la participation civique.",
+        sample: "« Être citoyen, ce n'est pas seulement avoir des droits, c'est respecter les règles communes : obéir aux lois, payer l'impôt pour financer les hôpitaux et les écoles, et voter lors des scrutins pour faire vivre la démocratie. »"
+      }
+    ];
+
+    // --- ÉTAT GLOBAL DE L'APPLICATION ---
+    let currentQuestions = [];
+    let currentQuestionIndex = 0;
+    let selectedOptionIndex = null;
+    let userAnswers = [];
+    let quizTimer = null;
+    let timeRemaining = 15 * 60; // 15 minutes en secondes
+    let isExamMode = true;
+
+    // --- INITIALISATION AU CHARGEMENT ---
+    window.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      renderHomeThemes();
+      renderFullThemes();
+      renderMemoCards(MEMO_CARDS);
+      renderInterviewCards();
+      updateDashboardStats();
+      renderRecentHistory();
+
+      // Gestion recherche fiches
+      document.getElementById('memoSearchInput').addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const filtered = MEMO_CARDS.filter(m => 
+          m.title.toLowerCase().includes(query) || 
+          m.content.toLowerCase().includes(query) ||
+          m.category.toLowerCase().includes(query)
+        );
+        renderMemoCards(filtered);
+      });
+    });
+
+    // --- GESTION DU THÈME SOMBRE / CLAIR (iOS STYLE) ---
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('themeIcon').className = 'ph-bold ph-sun text-lg text-amber-400';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('themeIcon').className = 'ph-bold ph-moon text-lg';
+      }
+
+      document.getElementById('themeToggleBtn').addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        document.getElementById('themeIcon').className = isDark 
+          ? 'ph-bold ph-sun text-lg text-amber-400' 
+          : 'ph-bold ph-moon text-lg';
+      });
+    }
+
+    // --- NAVIGATION D'ONGLETS ---
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active', 'text-ios-blue');
+        btn.classList.add('text-neutral-400');
+        const icon = btn.querySelector('i');
+        if (icon) icon.className = icon.className.replace('ph-fill', 'ph-bold');
+      });
+
+      const selectedTab = document.getElementById(`tab-${tabId}`);
+      if (selectedTab) selectedTab.classList.remove('hidden');
+
+      const clickedBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => 
+        b.getAttribute('onclick')?.includes(`'${tabId}'`)
+      );
+      if (clickedBtn) {
+        clickedBtn.classList.add('active', 'text-ios-blue');
+        clickedBtn.classList.remove('text-neutral-400');
+        const icon = clickedBtn.querySelector('i');
+        if (icon) icon.className = icon.className.replace('ph-bold', 'ph-fill');
+      }
+      window.scrollTo(0, 0);
+    }
+
+    // --- RENDU DES THÈMES SUR L'ACCUEIL ET L'ONGLET THÈMES ---
+    function renderHomeThemes() {
+      const container = document.getElementById('homeThemesGrid');
+      container.innerHTML = THEMES.slice(0, 4).map(t => `
+        <div onclick="startThemePractice('${t.id}')" class="bg-ios-cardLight dark:bg-ios-cardDark p-3.5 rounded-2xl border border-ios-borderLight dark:border-ios-borderDark shadow-sm flex flex-col justify-between active:scale-95 transition cursor-pointer">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr ${t.color} text-white flex items-center justify-center text-lg mb-2">
+            <i class="ph-bold ${t.icon}"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-xs leading-snug">${t.title}</h4>
+            <span class="text-[10px] text-neutral-400">Entraînement direct</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderFullThemes() {
+      const container = document.getElementById('themesFullList');
+      container.innerHTML = THEMES.map(t => {
+        const count = QUESTIONS_DB.filter(q => q.theme === t.id).length;
+        return `
+          <div onclick="startThemePractice('${t.id}')" class="bg-ios-cardLight dark:bg-ios-cardDark p-4 rounded-3xl border border-ios-borderLight dark:border-ios-borderDark shadow-sm flex items-center justify-between active:scale-[0.99] transition cursor-pointer">
+            <div class="flex items-center space-x-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr ${t.color} text-white flex items-center justify-center text-2xl shadow-sm flex-shrink-0">
+                <i class="ph-bold ${t.icon}"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm">${t.title}</h4>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">${t.desc}</p>
+                <span class="inline-block mt-1 text-[10px] font-semibold text-ios-blue">${count} questions disponibles</span>
+              </div>
+            </div>
+            <i class="ph-bold ph-caret-right text-neutral-400 text-lg"></i>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // --- RENDU DES FICHES DE RÉVISION ---
+    function renderMemoCards(cards) {
+      const container = document.getElementById('memosContainer');
+      if (cards.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 text-neutral-400 text-xs italic">
+            Aucune fiche ne correspond à votre recherche.
+          </div>
+        `;
+        return;
+      }
+      container.innerHTML = cards.map(c => `
+        <div class="bg-ios-cardLight dark:bg-ios-cardDark p-4 rounded-2xl border border-ios-borderLight dark:border-ios-borderDark shadow-sm space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-sm text-neutral-900 dark:text-neutral-100">${c.title}</h4>
+            <span class="text-[10px] uppercase font-bold px-2 py-0.5 bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 rounded-md">${c.badge}</span>
+          </div>
+          <p class="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed">${c.content}</p>
+        </div>
+      `).join('');
+    }
+
+    function filterMemos(cat) {
+      document.querySelectorAll('.memo-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-ios-blue', 'text-white');
+        btn.classList.add('bg-neutral-200', 'dark:bg-neutral-800', 'text-neutral-700', 'dark:text-neutral-300');
+      });
+      event.target.classList.remove('bg-neutral-200', 'dark:bg-neutral-800', 'text-neutral-700', 'dark:text-neutral-300');
+      event.target.classList.add('bg-ios-blue', 'text-white');
+
+      if (cat === 'all') {
+        renderMemoCards(MEMO_CARDS);
+      } else {
+        renderMemoCards(MEMO_CARDS.filter(m => m.category === cat));
+      }
+    }
+
+    // --- RENDU DES QUESTIONS D'ENTRETIEN ---
+    function renderInterviewCards() {
+      const container = document.getElementById('interviewQuestionsContainer');
+      container.innerHTML = INTERVIEW_PREP.map((item, idx) => `
+        <div class="bg-ios-cardLight dark:bg-ios-cardDark rounded-2xl border border-ios-borderLight dark:border-ios-borderDark p-4 shadow-sm space-y-3">
+          <div class="flex items-start space-x-2.5">
+            <span class="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+              ${idx + 1}
+            </span>
+            <h3 class="font-bold text-sm leading-snug">${item.q}</h3>
+          </div>
+          
+          <div class="bg-neutral-100 dark:bg-neutral-800/60 p-2.5 rounded-xl text-xs space-y-1">
+            <span class="font-bold text-amber-600 dark:text-amber-400 flex items-center space-x-1">
+              <i class="ph-bold ph-lightbulb"></i>
+              <span>Conseil stratégique :</span>
+            </span>
+            <p class="text-neutral-600 dark:text-neutral-400">${item.tip}</p>
+          </div>
+
+          <div class="border-l-2 border-emerald-500 pl-3 py-0.5 text-xs text-neutral-700 dark:text-neutral-300 italic">
+            <strong class="text-emerald-700 dark:text-emerald-400 not-italic block mb-0.5">Exemple de réponse attendue :</strong>
+            ${item.sample}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // --- LOGIQUE DU MOTEUR D'EXAMEN & D'ENTRAÎNEMENT ---
+    function shuffle(array) {
+      return [...array].sort(() => Math.random() - 0.5);
+    }
+
+    function startExam(questionCount = 20) {
+      isExamMode = true;
+      currentQuestions = shuffle(QUESTIONS_DB).slice(0, questionCount);
+      initQuizInterface();
+    }
+
+    function startThemePractice(themeId) {
+      isExamMode = false;
+      const filtered = QUESTIONS_DB.filter(q => q.theme === themeId);
+      currentQuestions = shuffle(filtered);
+      initQuizInterface();
+    }
+
+    function initQuizInterface() {
+      currentQuestionIndex = 0;
+      selectedOptionIndex = null;
+      userAnswers = [];
+      
+      const timerBadge = document.getElementById('quizTimerBadge');
+      if (isExamMode) {
+        timerBadge.classList.remove('hidden');
+        timeRemaining = 15 * 60; // 15 minutes
+        startTimer();
+      } else {
+        timerBadge.classList.add('hidden');
+        if (quizTimer) clearInterval(quizTimer);
+      }
+
+      document.getElementById('quizScreen').classList.remove('hidden');
+      loadQuestion();
+    }
+
+    function startTimer() {
+      if (quizTimer) clearInterval(quizTimer);
+      updateTimerDisplay();
+      quizTimer = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+        if (timeRemaining <= 0) {
+          clearInterval(quizTimer);
+          finishQuiz();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(timeRemaining / 60);
+      const secs = timeRemaining % 60;
+      document.getElementById('quizTimerText').textContent = 
+        `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function loadQuestion() {
+      selectedOptionIndex = null;
+      const q = currentQuestions[currentQuestionIndex];
+      
+      // Barre de progression
+      const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+      document.getElementById('quizProgressBar').style.width = `${progress}%`;
+      
+      // Textes
+      document.getElementById('quizCounterText').textContent = `${currentQuestionIndex + 1} / ${currentQuestions.length}`;
+      document.getElementById('quizCategoryBadge').textContent = q.category;
+      document.getElementById('quizQuestionText').textContent = q.question;
+      
+      // Masquer explications
+      const explBox = document.getElementById('quizExplanationBox');
+      explBox.classList.add('hidden');
+      explBox.classList.remove('bg-emerald-50', 'bg-rose-50', 'dark:bg-emerald-950/40', 'dark:bg-rose-950/40');
+      
+      // Bouton Suivant désactivé
+      const nextBtn = document.getElementById('quizNextBtn');
+      nextBtn.disabled = true;
+      nextBtn.className = "w-full bg-neutral-300 dark:bg-neutral-800 text-neutral-500 py-3.5 px-4 rounded-2xl font-bold flex items-center justify-center space-x-2 transition cursor-not-allowed";
+
+      // Options
+      const optionsContainer = document.getElementById('quizOptionsContainer');
+      optionsContainer.innerHTML = q.options.map((opt, i) => `
+        <button onclick="handleOptionSelect(${i})" id="opt-btn-${i}" class="w-full text-left p-4 rounded-2xl border-2 border-ios-borderLight dark:border-ios-borderDark bg-ios-cardLight dark:bg-ios-cardDark flex items-center justify-between active:scale-[0.99] transition text-sm font-medium">
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 flex items-center justify-center text-xs font-bold text-neutral-600 dark:text-neutral-400 flex-shrink-0">
+              ${['A', 'B', 'C', 'D'][i]}
+            </span>
+            <span class="text-neutral-800 dark:text-neutral-200 leading-snug">${opt}</span>
+          </div>
+          <div id="opt-icon-${i}" class="text-xl flex-shrink-0"></div>
+        </button>
+      `).join('');
+    }
+
+    function handleOptionSelect(idx) {
+      if (selectedOptionIndex !== null) return; // Déjà répondu
+      
+      selectedOptionIndex = idx;
+      const q = currentQuestions[currentQuestionIndex];
+      const isCorrect = idx === q.answer;
+
+      userAnswers.push({
+        questionId: q.id,
+        userPick: idx,
+        correctPick: q.answer,
+        isCorrect: isCorrect
+      });
+
+      // Révéler les couleurs des options
+      q.options.forEach((_, i) => {
+        const btn = document.getElementById(`opt-btn-${i}`);
+        const icon = document.getElementById(`opt-icon-${i}`);
+        btn.classList.remove('border-ios-borderLight', 'dark:border-ios-borderDark');
+        
+        if (i === q.answer) {
+          btn.classList.add('border-emerald-500', 'bg-emerald-50', 'dark:bg-emerald-950/40');
+          icon.innerHTML = '<i class="ph-fill ph-check-circle text-emerald-500"></i>';
+        } else if (i === idx) {
+          btn.classList.add('border-rose-500', 'bg-rose-50', 'dark:bg-rose-950/40');
+          icon.innerHTML = '<i class="ph-fill ph-x-circle text-rose-500"></i>';
+        } else {
+          btn.classList.add('opacity-40');
+        }
+      });
+
+      // Afficher explications
+      const explBox = document.getElementById('quizExplanationBox');
+      const explText = document.getElementById('quizExplanationText');
+      explText.textContent = q.explanation;
+      explBox.classList.remove('hidden');
+
+      // Activer bouton suivant
+      const nextBtn = document.getElementById('quizNextBtn');
+      nextBtn.disabled = false;
+      nextBtn.className = "w-full bg-ios-blue text-white py-3.5 px-4 rounded-2xl font-bold flex items-center justify-center space-x-2 active:scale-[0.98] transition cursor-pointer";
+      
+      if (currentQuestionIndex === currentQuestions.length - 1) {
+        nextBtn.innerHTML = '<span>Terminer et voir le bilan</span><i class="ph-bold ph-check"></i>';
+      } else {
+        nextBtn.innerHTML = '<span>Question suivante</span><i class="ph-bold ph-arrow-right"></i>';
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQuestionIndex < currentQuestions.length - 1) {
+        currentQuestionIndex++;
+        loadQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
+      if (quizTimer) clearInterval(quizTimer);
+      document.getElementById('quizScreen').classList.add('hidden');
+
+      const correctCount = userAnswers.filter(a => a.isCorrect).length;
+      const total = currentQuestions.length;
+      const scoreOn20 = Math.round((correctCount / total) * 20);
+      const isPassed = scoreOn20 >= 12;
+
+      // Sauvegarde dans l'historique
+      saveExamResult({
+        date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }),
+        score: scoreOn20,
+        total: 20,
+        passed: isPassed,
+        type: isExamMode ? "Examen Blanc" : "Entraînement"
+      });
+
+      // Écran de résultat
+      const iconWrapper = document.getElementById('resultIconWrapper');
+      const title = document.getElementById('resultTitle');
+      const subtitle = document.getElementById('resultSubtitle');
+      const scoreTxt = document.getElementById('resultScore');
+      const statusTxt = document.getElementById('resultStatus');
+      const feedback = document.getElementById('resultFeedback');
+
+      scoreTxt.textContent = `${scoreOn20} / 20`;
+
+      if (isPassed) {
+        iconWrapper.className = "w-24 h-24 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-500 flex items-center justify-center text-5xl shadow-xl";
+        iconWrapper.innerHTML = '<i class="ph-fill ph-seal-check"></i>';
+        title.textContent = "Félicitations !";
+        subtitle.textContent = "Vous avez franchi le seuil d'admissibilité civique.";
+        statusTxt.textContent = "ADMIS (≥ 12/20)";
+        statusTxt.className = "text-lg font-bold text-emerald-600 dark:text-emerald-400";
+        feedback.textContent = `Excellent travail ! Vous avez obtenu ${correctCount} réponses correctes sur ${total}. Vous maîtrisez les principes fondamentaux du Livret du Citoyen.`;
+      } else {
+        iconWrapper.className = "w-24 h-24 rounded-full bg-rose-100 dark:bg-rose-950 text-rose-500 flex items-center justify-center text-5xl shadow-xl";
+        iconWrapper.innerHTML = '<i class="ph-fill ph-warning-circle"></i>';
+        title.textContent = "Encore un effort !";
+        subtitle.textContent = "La note minimale requise pour l'examen est de 12/20.";
+        statusTxt.textContent = "NON ADMIS (< 12/20)";
+        statusTxt.className = "text-lg font-bold text-rose-600 dark:text-rose-400";
+        feedback.textContent = `Vous avez obtenu ${correctCount} sur ${total}. Révisez les Fiches Mémo et réessayez pour solidifier vos repères républicains.`;
+      }
+
+      document.getElementById('resultScreen').classList.remove('hidden');
+      updateDashboardStats();
+      renderRecentHistory();
+    }
+
+    function confirmExitQuiz() {
+      if (confirm("Voulez-vous vraiment quitter ce test en cours ? Votre progression actuelle ne sera pas sauvegardée.")) {
+        if (quizTimer) clearInterval(quizTimer);
+        document.getElementById('quizScreen').classList.add('hidden');
+      }
+    }
+
+    function restartCurrentQuiz() {
+      document.getElementById('resultScreen').classList.add('hidden');
+      if (isExamMode) {
+        startExam(20);
+      } else {
+        initQuizInterface();
+      }
+    }
+
+    function closeResultScreen() {
+      document.getElementById('resultScreen').classList.add('hidden');
+      switchTab('home');
+    }
+
+    // --- SAUVEGARDE & STATISTIQUES (LOCALSTORAGE) ---
+    function getStoredHistory() {
+      try {
+        return JSON.parse(localStorage.getItem('passcivique_history')) || [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveExamResult(result) {
+      const history = getStoredHistory();
+      history.unshift(result);
+      if (history.length > 25) history.pop();
+      localStorage.setItem('passcivique_history', JSON.stringify(history));
+    }
+
+    function updateDashboardStats() {
+      const history = getStoredHistory();
+      const total = history.length;
+      
+      document.getElementById('statTotalExams').textContent = total;
+
+      if (total === 0) {
+        document.getElementById('statAvgScore').textContent = "--/20";
+        document.getElementById('statSuccessRate').textContent = "--%";
+        return;
+      }
+
+      const sumScores = history.reduce((acc, h) => acc + h.score, 0);
+      const avg = (sumScores / total).toFixed(1);
+      const passedCount = history.filter(h => h.passed).length;
+      const rate = Math.round((passedCount / total) * 100);
+
+      document.getElementById('statAvgScore').textContent = `${avg}/20`;
+      document.getElementById('statSuccessRate').textContent = `${rate}%`;
+    }
+
+    function renderRecentHistory() {
+      const history = getStoredHistory();
+      const container = document.getElementById('recentHistoryList');
+
+      if (history.length === 0) {
+        container.innerHTML = `
+          <p class="text-xs text-neutral-400 italic text-center py-4 bg-ios-cardLight dark:bg-ios-cardDark rounded-2xl border border-ios-borderLight dark:border-ios-borderDark">
+            Aucun examen passé pour le moment. Lancez votre premier test !
+          </p>
+        `;
+        return;
+      }
+
+      container.innerHTML = history.slice(0, 5).map(h => `
+        <div class="bg-ios-cardLight dark:bg-ios-cardDark p-3 rounded-2xl border border-ios-borderLight dark:border-ios-borderDark flex items-center justify-between shadow-sm">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center ${h.passed ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-950' : 'bg-rose-100 text-rose-600 dark:bg-rose-950'} font-bold text-sm">
+              <i class="ph-bold ${h.passed ? 'ph-check' : 'ph-x'}"></i>
+            </div>
+            <div>
+              <p class="font-bold text-xs">${h.type}</p>
+              <span class="text-[10px] text-neutral-400">${h.date}</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="font-black text-sm ${h.passed ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}">${h.score}/20</span>
+            <span class="block text-[9px] uppercase font-bold text-neutral-400">${h.passed ? 'Admis' : 'Échoué'}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>
